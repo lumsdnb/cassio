@@ -11,6 +11,8 @@
   <!-- Load the required dependencies: A-frame and AR.js -->
   <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
   <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+  <script src="./script.js"></script>
+  <link rel="stylesheet" href="style.css" />
 
   <!-- This is a hack because at the time of writing there are some distortions in the provided visuals until the  -->
   <!-- system receives a resize event. The resize event must be triggered when everything has been loaded and the  -->
@@ -20,15 +22,15 @@
   <script>
     window.onload = function () {
       setTimeout(function () {
-        var resizeEvent = window.document.createEvent('UIEvents');
-        resizeEvent.initUIEvent('resize', true, false, window, 0);
+        var resizeEvent = window.document.createEvent("UIEvents");
+        resizeEvent.initUIEvent("resize", true, false, window, 0);
         window.dispatchEvent(resizeEvent);
       }, 3000);
     };
   </script>
 </head>
 
-<body style="margin: 0px; overflow: hidden">
+<body>
   <!-- a-scene defines the scene that we are agoing to use. After arjs= there are various options that can be customized  -->
   <!-- depending on your needs. For now just stick with these ones -->
   <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
@@ -39,7 +41,14 @@
       type="pattern"
       url="https://dl.dropboxusercontent.com/s/ew3rye9n69s5qjo/big-m.patt"
     >
-      <!-- Here we define the content to show on the marker when it gets detected: a unit cube that lies on the floor and that is red -->
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity
+        text="value: Hello, M-marker!; color: #BBB"
+        position="5 0.2 0"
+        scale="10 10 10"
+        rotation="-90 0 0"
+      ></a-entity>
+      ^
       <a-image
         id="img1"
         position="0 0 0"
@@ -55,8 +64,8 @@
         visible=""
         material=""
         geometry=""
+        scale-on-mouseenter
       ></a-image>
-
       <a-image
         id="img2"
         position="0 0.2 0"
@@ -72,6 +81,7 @@
         visible=""
         material=""
         geometry=""
+        animation="property: object3D.position.y; to: 0.7; dir: alternate; dur: 2000; loop: true"
       >
       </a-image>
 
@@ -92,8 +102,137 @@
         geometry=""
       ></a-image>
     </a-marker>
+    <a-marker
+      preset="custom"
+      type="pattern"
+      url="https://dl.dropboxusercontent.com/s/klq435uimttu40v/A.patt"
+    >
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity
+        text="value: Hello, A-Marker!; color: #BBB"
+        position="5 0.2 0"
+        scale="10 10 10"
+        rotation="-90 0 0"
+      ></a-entity>
+      ^
+      <a-image
+        id="img1"
+        position="0 0 0"
+        rotation="90 180 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/buch.jpg"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+      ></a-image>
+      <a-image
+        id="img2"
+        position="0 0.2 0"
+        rotation="270 0 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/pic2.png"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+        animation="property: object3D.position.y; to: 0.7; dir: alternate; dur: 2000; loop: true"
+      >
+      </a-image>
 
+      <a-image
+        id="img3"
+        position="0 0.4 0"
+        rotation="270 0 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/pic3.png"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+      ></a-image>
+    </a-marker>
+    <a-marker
+      preset="custom"
+      type="pattern"
+      url="https://dl.dropboxusercontent.com/s//9qvmqa7i9o36hq2/pattern-b.patt"
+    >
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity
+        text="value: Hello, B-Marker!; color: #BBB"
+        position="5 0.2 0"
+        scale="10 10 10"
+        rotation="-90 0 0"
+      ></a-entity>
+      ^
+      <a-image
+        id="img1"
+        position="0 0 0"
+        rotation="90 180 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/buch.jpg"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+      ></a-image>
+      <a-image
+        id="img2"
+        position="0 0.2 0"
+        rotation="270 0 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/pic2.png"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+        animation="property: object3D.position.y; to: 0.7; dir: alternate; dur: 2000; loop: true"
+      >
+      </a-image>
+
+      <a-image
+        id="img3"
+        position="0 0.4 0"
+        rotation="270 0 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/pic3.png"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+      ></a-image>
+    </a-marker>
     <!-- Define the camera of the scene -->
-    <a-entity camera></a-entity>
+    <a-entity camera> </a-entity>
   </a-scene>
 </body>
