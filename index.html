@@ -9,7 +9,7 @@
   />
 
   <!-- Load the required dependencies: A-frame and AR.js -->
-  <script src="./aframe.min.js"></script>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
   <script src="./script.js"></script>
   <link rel="stylesheet" href="style.css" />
@@ -21,6 +21,15 @@
   <!-- anymore -->
   <script>
     window.onload = function () {
+      document
+        .querySelector('.say-hi-button')
+        .addEventListener('click', function () {
+          // here you can change also a-scene or a-entity properties, like
+          // changing your 3D model source, size, position and so on
+          // or you can just open links, trigger actions...
+          alert('Hi there!');
+        });
+
       setTimeout(function () {
         var resizeEvent = window.document.createEvent('UIEvents');
         resizeEvent.initUIEvent('resize', true, false, window, 0);
@@ -31,16 +40,32 @@
 </head>
 
 <body>
+  <div class="buttons">
+    <button class="say-hi-button">hi</button>
+  </div>
   <!-- a-scene defines the scene that we are agoing to use. After arjs= there are various options that can be customized  -->
   <!-- depending on your needs. For now just stick with these ones -->
   <a-scene
     embedded
     arjs="sourceType: webcam; debugUIEnabled: true; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
   >
+    <a-assets>
+      <a-asset-item id="tree" src="./assets/tree.gltf"></a-asset-item>
+      <a-asset-item id="houses" src="./assets/houses.gltf"></a-asset-item>
+    </a-assets>
     <!-- Defines the marker that we are going to use. Notice that we are not providing the image file, but the  -->
     <!-- "compiled" .patt file that we got from the online tool. the marker MUST BE ACCESSIBLE VIA HTTPS -->
+    <a-marker type="barcode" value="0">
+      <a-gltf-model src="#tree"></a-gltf-model>
+      <a-entity
+        text="value: 0; color: #BBB"
+        position="5 0.2 0"
+        scale="10 10 10"
+        rotation="-90 0 0"
+      ></a-entity>
+    </a-marker>
     <a-marker type="barcode" value="1">
-      <a-box position="0 0.5 0" color="yellow"></a-box>
+      <a-box color="tomato" depth="2" height="2" width="2"></a-box>
       <a-entity
         text="value: 1; color: #BBB"
         position="5 0.2 0"
@@ -49,77 +74,15 @@
       ></a-entity>
     </a-marker>
     <a-marker type="barcode" value="2">
-      <a-box position="0 0.5 0" color="yellow"></a-box>
       <a-entity
         text="value: 2; color: #BBB"
         position="5 0.2 0"
         scale="10 10 10"
         rotation="-90 0 0"
       ></a-entity>
-    </a-marker>
-    <!-- fancy marker -->
-    <a-marker preset="custom" type="barcode" value="2">
-      <!-- Here we define the content to show on the marker when it gets detected -->
-      <a-entity
-        text="value: 2; color: #BBB"
-        position="5 0.2 0"
-        scale="10 10 10"
-        rotation="-90 0 0"
-      ></a-entity>
-      <a-image
-        id="img1"
-        position="0 0 0"
-        rotation="90 180 0"
-        width=""
-        height=""
-        opacity="1"
-        src="./assets/buch.jpg"
-        transparent="true"
-        alpha-test="0.2"
-        shader="standard"
-        scale="1 1 1"
-        visible=""
-        material=""
-        geometry=""
-      ></a-image>
-      <a-image
-        id="img2"
-        position="0 0.2 0"
-        rotation="270 0 0"
-        width=""
-        height=""
-        opacity="1"
-        src="./assets/pic2.png"
-        transparent="true"
-        alpha-test="0.2"
-        shader="standard"
-        scale="1 1 1"
-        visible=""
-        material=""
-        geometry=""
-        animation="property: object3D.position.y; to: 0.7; dir: alternate; dur: 2000; loop: true"
-      >
-      </a-image>
-
-      <a-image
-        id="img3"
-        position="0 0.4 0"
-        rotation="270 0 0"
-        width=""
-        height=""
-        opacity="1"
-        src="./assets/pic3.png"
-        transparent="true"
-        alpha-test="0.2"
-        shader="standard"
-        scale="1 1 1"
-        visible=""
-        material=""
-        geometry=""
-      ></a-image>
     </a-marker>
     <a-marker type="barcode" value="3">
-      <a-box position="0 0.5 0" color="yellow"></a-box>
+      <a-gltf-model src="#houses"></a-gltf-model>
       <a-entity
         text="value: 3; color: #BBB"
         position="5 0.2 0"
@@ -128,7 +91,7 @@
       ></a-entity>
     </a-marker>
     <a-marker type="barcode" value="4">
-      <a-box position="0 0.5 0" color="yellow"></a-box>
+      <a-box color="tomato" depth="2" height="4" width="0.5"></a-box>
       <a-entity
         text="value: 4; color: #BBB"
         position="5 0.2 0"
@@ -137,7 +100,7 @@
       ></a-entity>
     </a-marker>
     <a-marker type="barcode" value="5">
-      <a-box position="0 0.5 0" color="yellow"></a-box>
+      <a-box color="tomato" depth="2" height="4" width="0.5"></a-box>
       <a-entity
         text="value: 5; color: #BBB"
         position="5 0.2 0"
@@ -146,45 +109,9 @@
       ></a-entity>
     </a-marker>
     <a-marker type="barcode" value="6">
-      <a-box position="0 0.5 0" color="yellow"></a-box>
+      <a-box color="tomato" depth="2" height="4" width="0.5"></a-box>
       <a-entity
         text="value: 6; color: #BBB"
-        position="5 0.2 0"
-        scale="10 10 10"
-        rotation="-90 0 0"
-      ></a-entity>
-    </a-marker>
-    <a-marker type="barcode" value="7">
-      <a-box position="0 0.5 0" color="yellow"></a-box>
-      <a-entity
-        text="value: 7; color: #BBB"
-        position="5 0.2 0"
-        scale="10 10 10"
-        rotation="-90 0 0"
-      ></a-entity>
-    </a-marker>
-    <a-marker type="barcode" value="8">
-      <a-box position="0 0.5 0" color="yellow"></a-box>
-      <a-entity
-        text="value: 8; color: #BBB"
-        position="5 0.2 0"
-        scale="10 10 10"
-        rotation="-90 0 0"
-      ></a-entity>
-    </a-marker>
-    <a-marker type="barcode" value="9">
-      <a-box position="0 0.5 0" color="yellow"></a-box>
-      <a-entity
-        text="value: 9; color: #BBB"
-        position="5 0.2 0"
-        scale="10 10 10"
-        rotation="-90 0 0"
-      ></a-entity>
-    </a-marker>
-    <a-marker type="barcode" value="10">
-      <a-box position="0 0.5 0" color="yellow"></a-box>
-      <a-entity
-        text="value: 10; color: #BBB"
         position="5 0.2 0"
         scale="10 10 10"
         rotation="-90 0 0"
