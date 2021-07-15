@@ -1,0 +1,308 @@
+<a-marker
+      preset="custom"
+      type="pattern"
+      url="https://dl.dropboxusercontent.com/s/seoqncn2784qewt/pattern-A.patt"
+    >
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity
+        text="value: A steht für; color: #BBB"
+        position="5 0.2 0"
+        scale="10 10 10"
+        rotation="-90 0 0"
+      ></a-entity>
+      <a-image
+        id="img1"
+        position="0 0 0"
+        rotation="90 180 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/buch.jpg"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+        scale-on-mouseenter
+      ></a-image>
+      <a-image
+        id="img2"
+        position="0 0.2 0"
+        rotation="270 0 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/pic2.png"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+        animation="property: object3D.position.y; to: 0.7; dir: alternate; dur: 2000; loop: true"
+      >
+      </a-image>
+      <a-image
+        id="img3"
+        position="0 0.4 0"
+        rotation="270 0 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/pic3.png"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+      ></a-image>
+    </a-marker>
+    <a-marker
+      preset="custom"
+      type="pattern"
+      url="https://dl.dropboxusercontent.com/s/00gaantusvk0496/pattern-B.patt"
+    >
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity
+        text="value: B steht für; color: #BBB"
+        position="5 0.2 0"
+        scale="10 10 10"
+        rotation="-90 0 0"
+      ></a-entity>
+      <a-image
+        id="img1"
+        position="0 0 0"
+        rotation="90 180 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/buch.jpg"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+      ></a-image>
+      <a-image
+        id="img2"
+        position="0 0.2 0"
+        rotation="270 0 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/pic2.png"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+        animation="property: object3D.position.y; to: 0.7; dir: alternate; dur: 2000; loop: true"
+      >
+      </a-image>
+
+      <a-image
+        id="img3"
+        position="0 0.4 0"
+        rotation="270 0 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/pic3.png"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+      ></a-image>
+    </a-marker>
+    <a-marker
+      preset="custom"
+      type="pattern"
+      url="https://dl.dropboxusercontent.com/s/a7lpw8tntafkvvq/pattern-C.patt"
+    >
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity
+        text="value: C steht für; color: #BBB"
+        position="5 0.2 0"
+        scale="10 10 10"
+        rotation="-90 0 0"
+      ></a-entity>
+      ^
+      <a-image
+        id="img1"
+        position="0 0 0"
+        rotation="90 180 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/buch.jpg"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+      ></a-image>
+      <a-image
+        id="img2"
+        position="0 0.2 0"
+        rotation="270 0 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/pic2.png"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+        animation="property: object3D.position.y; to: 0.7; dir: alternate; dur: 2000; loop: true"
+      >
+      </a-image>
+
+      <a-image
+        id="img3"
+        position="0 0.4 0"
+        rotation="270 0 0"
+        width=""
+        height=""
+        opacity="1"
+        src="./assets/pic3.png"
+        transparent="true"
+        alpha-test="0.2"
+        shader="standard"
+        scale="1 1 1"
+        visible=""
+        material=""
+        geometry=""
+      ></a-image>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/1zazkj5nbwr9exx/pattern-D.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: D steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/vjtjjj9fjq5amu3/pattern-E.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: E steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/ajh1bla2jx7r844/pattern-F.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: F steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/rtimr2ge4fzvbtf/pattern-G.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: G steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/tntpz449jit4hwl/pattern-H.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: H steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/jr9g7a6dyabedsy/pattern-i.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: I steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/ijo0abo0wm9ov1a/pattern-J.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: J steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/5tyq55fqe11fyux/pattern-K.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: K steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/9eruaqprgnp559z/pattern-L.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: L steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/b54heywd5nhy6ui/pattern-m.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: M steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/kdjoyigm7nqi2ey/pattern-n.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: N steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/3igdqrem8246uzb/pattern-o.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: O steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/i264skv95uca15x/pattern-P.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: P steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/eenj3tr1bqsydmg/pattern-q.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: Q steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/nwoffqvl3r0rnx6/pattern-R.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: R steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/dchbsviu4prxqw8/pattern-s.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: S steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/q5p8j57acox8eke/pattern-t.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: T steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/fcnzix9d1voetwy/pattern-U.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: U steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/k0f2hhmcekxf0jq/pattern-v.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: V steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/b6ck5m2ijsseehy/pattern-w.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: W steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/1ryoejup82t10q0/pattern-x.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: X steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/arqgq2uxj88zab5/pattern-y.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: Y steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="https://dl.dropboxusercontent.com/s/kpr3ckgy1wvk4c7/pattern-z.patt">
+      <!-- Here we define the content to show on the marker when it gets detected -->
+      <a-entity text="value: Z steht für; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0">
+      </a-entity>
+    </a-marker>
