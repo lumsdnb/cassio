@@ -28,10 +28,21 @@
   </script>
 </head>
 
+<script>
+  AFRAME.registerComponent('markerhandler', {
+    init: function () {
+      this.el.sceneEl.addEventListener('markerFound', () => {
+        // redirect to custom URL e.g. google.com
+        window.location = 'https://www.google.com/';
+      });
+    },
+  });
+</script>
+
 <body style="margin: 0px; overflow: hidden">
   <!-- a-scene defines the scene that we are agoing to use. After arjs= there are various options that can be customized  -->
   <!-- depending on your needs. For now just stick with these ones -->
-  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: true;">
     <!-- Defines the marker that we are going to use. Notice that we are not providing the image file, but the  -->
     <!-- "compiled" .patt file that we got from the online tool. the marker MUST BE ACCESSIBLE VIA HTTPS -->
     <a-marker
