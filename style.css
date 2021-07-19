@@ -24,3 +24,16 @@ body {
   width: 4em;
   height: 2em;
 }
+
+.output-log {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  padding: 2rem;
+  color: white;
+  background-color: #202020;
+  user-select: none;
+  border-radius: 0.5rem;
+}
