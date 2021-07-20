@@ -1,135 +1,33 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
+    <title>Hello!</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
 
-  <!-- Initialize the viewport -->
-  <meta
-    name="viewport"
-    content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-  />
-
-  <!-- Load the required dependencies: A-frame and AR.js -->
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
-  <script src="./script.js"></script>
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- This is a hack because at the time of writing there are some distortions in the provided visuals until the  -->
-  <!-- system receives a resize event. The resize event must be triggered when everything has been loaded and the  -->
-  <!-- camera has been initialized. All the events I tried didn't work, so in the end I resorted using a 3 seconds -->
-  <!-- time-out after the load event. When this problem will be fixed in the AR.js library, this hack won't be necessary -->
-  <!-- anymore -->
-  <script>
-    window.onload = function () {
-      document
-        .querySelector('.say-hi-button')
-        .addEventListener('click', function () {
-          // here you can change also a-scene or a-entity properties, like
-          // changing your 3D model source, size, position and so on
-          // or you can just open links, trigger actions...
-          alert('Hi there!');
-        });
-
-      setTimeout(function () {
-        var resizeEvent = window.document.createEvent('UIEvents');
-        resizeEvent.initUIEvent('resize', true, false, window, 0);
-        window.dispatchEvent(resizeEvent);
-      }, 3000);
-    };
-  </script>
+    <!-- import the webpage's javascript file -->
+    <script src="./loadScene.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<!-- fire function when marker is detected -->
-<script>
-  AFRAME.registerComponent('markerhandler', {
-    init: function () {
-      this.el.sceneEl.addEventListener('markerFound', (e) => {
-        // redirect to custom URL e.g. google.com
-        setTimeout(function () {
-          //console.log(e.target.classList);
-          document.querySelector('.output-log').innerHTML = e.target.classList;
-        }, 1000);
-      });
-    },
-  });
-</script>
-
 <body>
-  <span class="output-log"></span>
-  <div class="buttons"></div>
-  <!-- a-scene defines the scene that we are agoing to use. After arjs= there are various options that can be customized  -->
-  <!-- depending on your needs. For now just stick with these ones -->
-  <a-scene
-    embedded
-    arjs="sourceType: webcam; debugUIEnabled: true; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
-  >
-    <a-assets>
-      <a-asset-item id="tree" src="./assets/tree.gltf"></a-asset-item>
-      <a-asset-item id="houses" src="./assets/houses.gltf"></a-asset-item>
-    </a-assets>
-    <!-- Defines the marker that we are going to use. Notice that we are not providing the image file, but the  -->
-    <!-- "compiled" .patt file that we got from the online tool. the marker MUST BE ACCESSIBLE VIA HTTPS -->
-    <a-marker markerhandler type="barcode" value="0" class="ein-baum">
-      <a-gltf-model src="#tree"></a-gltf-model>
-      <a-entity
-        text="value: 0; color: #BBB"
-        position="5 0.2 0"
-        scale="10 10 10"
-        rotation="-90 0 0"
-      ></a-entity>
-    </a-marker>
-    <a-marker markerhandler type="barcode" value="1" class="marker-zwo">
-      <a-box color="tomato" depth="2" height="2" width="2"></a-box>
-      <a-entity
-        text="value: 1; color: #BBB"
-        position="5 0.2 0"
-        scale="10 10 10"
-        rotation="-90 0 0"
-      ></a-entity>
-    </a-marker>
-    <a-marker markerhandler type="barcode" value="2" class="dreiecke-überall">
-      <a-tetrahedron color="#FF926B" radius="5"></a-tetrahedron>
-    </a-marker>
-    <!--
-    <a-marker type="barcode" value="3">
-      <a-gltf-model src="#houses"></a-gltf-model>
-      <a-entity
-        text="value: 3; color: #BBB"
-        position="5 0.2 0"
-        scale="10 10 10"
-        rotation="-90 0 0"
-      ></a-entity>
-    </a-marker>
-    <a-marker type="barcode" value="4">
-      <a-box color="#44444a" depth=".5" height=".5" width=".5"></a-box>
-      <a-entity
-        text="value: 4; color: #BBB"
-        position="5 0.2 0"
-        scale="10 10 10"
-        rotation="-90 0 0"
-      ></a-entity>
-    </a-marker>
-    <a-marker type="barcode" value="5">
-      <a-sphere color="blue" radius=".3" position=".03 0.2 0"></a-sphere>
-      <a-sphere color="green" radius=".2" position="-.03 0.4 0"></a-sphere>
+    <h1>Cassiopeia Saga</h1>
 
-      <a-entity
-        text="value: 5; color: #BBB"
-        position="5 0.2 0"
-        scale="10 10 10"
-        rotation="-90 0 0"
-      ></a-entity>
-    </a-marker>
-    <a-marker type="barcode" value="6">
-      <a-box color="tomato" depth="1" height="1" width="1"></a-box>
-      <a-entity
-        text="value: 6; color: #BBB"
-        position="5 0.2 0"
-        scale="10 10 10"
-        rotation="-90 0 0"
-      ></a-entity>
-    </a-marker>
-    Define the camera of the scene -->
-    <a-entity camera> </a-entity>
-  </a-scene>
+    <p>
+        ich bin dein Begleiter in unsere parallelen Geschichten.
+    </p>
+    <footer>
+        <button class="camera-toggle-button" onclick="addScene()">
+            <p>
+                Hinweise suchen
+            </p>
+        </button>
+    </footer>
+
 </body>
+
+</html>

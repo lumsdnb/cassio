@@ -1,6 +1,8 @@
 body {
   margin: 0px;
-  overflow: hidden;
+  max-width: 30rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .buttons {
@@ -13,6 +15,23 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 10;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 3;
+}
+footer > *{
+  width: 100%;
+}
+
+iframe {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .say-hi-button {
