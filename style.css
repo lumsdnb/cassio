@@ -2,12 +2,17 @@
     font-family: eckmann;
     src: url("./Eckmann.ttf");
 }
+@font-face {
+    font-family: et;
+    src: url("./et-book-roman-line-figures.ttf);
+}
 body {
   margin: 0px;
   max-width: 30rem;
   display: flex;
   flex-direction: column;
   background-color: #d1d2d4;
+font-family: 'et';
 }
 h1,h2,h3,h4,h5,h6{
   font-family: 'eckmann', Courier, monospace;
