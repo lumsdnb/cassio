@@ -3,7 +3,7 @@ function addScene() {
         var scene = document.createElement("iframe")
         scene.classList.add("camera-scene")
         scene.setAttribute("src", "ar.html")
-        scene.setAttribute("height", "100%")
+        scene.setAttribute("height", "100vh")
         document.querySelector("body").appendChild(scene)
         document.querySelector(".camera-toggle-button").innerHTML = "<p>kamera schliesen</p>"
     } else document.querySelector(".camera-scene").remove()

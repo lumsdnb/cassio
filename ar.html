@@ -6,6 +6,21 @@
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
 </head>
 
+<!-- fire function when marker is detected -->
+<script>
+    AFRAME.registerComponent('markerhandler', {
+        init: function () {
+            this.el.sceneEl.addEventListener('markerFound', (e) => {
+                // redirect to custom URL e.g. google.com
+                setTimeout(function () {
+                    console.log(e.target);
+                    document.querySelector('.output-log').innerHTML = e.target.classList;
+                }, 1000);
+            });
+        },
+    });
+</script>
+
 <body style="margin : 0px; overflow: hidden;">
     <a-scene class="camera-scene" embedded
         arjs="sourceType: webcam; debugUIEnabled: true; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
