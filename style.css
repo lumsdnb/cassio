@@ -1,34 +1,46 @@
 @font-face {
-    font-family: eckmann;
-    src: url("./Eckmann.ttf");
+  font-family: eckmann;
+  src: url('./Eckmann.ttf');
 }
 @font-face {
-    font-family: et;
-    src: url("./et-book-roman-line-figures.ttf);
+  font-family: et;
+  src: url('./et-book-roman-line-figures.ttf');
+}
+html {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 body {
   margin: 0px;
   max-width: 30rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #d1d2d4;
 }
-h1,h2,h3,h4,h5,h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'eckmann', Courier, monospace;
   text-align: center;
-  
 }
 
 p {
-  font-family: 'et';
+  font-family: 'et', 'Times New Roman', Times, serif;
+  font-size: 1.3rem;
 }
 
-.banner-img{
-  background: url("./banner.jpg");
+.banner-img {
+  background: url('./banner.jpg');
   height: 40vh;
   width: 100vw;
   user-select: none;
-    background-position: center; /* Center the image */
+  background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
 }
@@ -45,13 +57,13 @@ p {
   z-index: 10;
 }
 
-footer{
+footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   z-index: 3;
 }
-footer > *{
+footer > * {
   width: 100%;
 }
 
