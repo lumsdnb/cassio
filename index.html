@@ -9,9 +9,19 @@
     <link rel="stylesheet" href="/style.css" />
 
     <!-- import the webpage's javascript file -->
-    <script src="./loadScene.js"></script>
+    <script src="./iframeLoadScene.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
+
+  <script>
+    const foundMarker = (id) => {
+      console.log(id);
+    };
+    const testFn = () => {
+      const scene = document.querySelector('.camera-scene');
+      console.log(scene.contentWindow);
+    };
+  </script>
 
   <body>
     <div class="banner-img"></div>
@@ -21,18 +31,34 @@
       sit amet consectetur, adipisicing elit. Optio modi commodi sapiente
       obcaecati deserunt perferendis ipsa beatae minima repellat quisquam.
     </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam quod
-      explicabo voluptatem voluptatum molestias tenetur iste qui, facere nostrum
-      ipsum nulla inventore ex neque laudantium omnis sapiente nihil nam vero
-      voluptas? Adipisci error eos, sapiente ipsum odio laborum. Facilis aut
-      eos, magni sit officia recusandae?
-    </p>
-    <span class="output-log"></span>
+    <h2>Deine Items</h2>
+    <section class="collectables">
+      <div class="item1 circle">?</div>
+      <div class="item2 circle">?</div>
+      <div class="item3 circle">?</div>
+      <div class="item4 circle">?</div>
+      <div class="item5 circle">?</div>
+      <div class="item6 circle">?</div>
+      <div class="item7 circle found">?</div>
+      <div class="item8 circle">?</div>
+    </section>
 
     <footer>
       <button class="camera-toggle-button" onclick="addScene()">
-        <p>Hinweise suchen</p>
+        <p>
+          <svg
+            width="90"
+            height="62"
+            viewBox="0 0 90 62"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M45 61.9167C37.7561 62.0069 30.5871 60.4435 24.0385 57.3455C18.9624 54.8687 14.4042 51.4482 10.6074 47.2666C6.58575 42.9432 3.41916 37.8974 1.27501 32.3957L0.833344 31L1.29709 29.6044C3.44278 24.1075 6.60255 19.063 10.6118 14.7334C14.4073 10.5522 18.9639 7.13176 24.0385 4.65461C30.5872 1.55671 37.7561 -0.0066891 45 0.0833621C52.2439 -0.00653365 59.4128 1.55686 65.9615 4.65461C71.0377 7.13119 75.5959 10.5517 79.3926 14.7334C83.4219 19.051 86.5895 24.0984 88.725 29.6044L89.1667 31L88.7029 32.3957C81.7741 50.4324 64.3194 62.223 45 61.9167ZM45 8.9167C29.9651 8.44557 16.1654 17.1984 10.1834 31C16.1645 44.8025 29.9648 53.5557 45 53.0834C60.0346 53.5533 73.8336 44.8009 79.8166 31C73.8424 17.1917 60.0376 8.43563 45 8.9167ZM45 44.25C38.6282 44.2922 33.1164 39.8217 31.8426 33.5784C30.5688 27.335 33.8889 21.0626 39.768 18.6054C45.647 16.1481 52.4431 18.1923 55.9911 23.4851C59.539 28.7779 58.8479 35.841 54.3413 40.3457C51.8738 42.8423 48.5102 44.2481 45 44.25Z"
+              fill="black"
+            />
+          </svg>
+        </p>
       </button>
     </footer>
   </body>

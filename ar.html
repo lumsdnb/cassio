@@ -1,47 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-<head>
-    <script src="./aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
-</head>
-
-<!-- fire function when marker is detected -->
-<script>
+  <!-- fire function when marker is detected -->
+  <script>
     AFRAME.registerComponent('markerhandler', {
-        init: function () {
-            this.el.sceneEl.addEventListener('markerFound', (e) => {
-                // redirect to custom URL e.g. google.com
-                setTimeout(function () {
-                    console.log(e.target);
-                    document.querySelector('.output-log').innerHTML = e.target.classList;
-                }, 1000);
-            });
-        },
-    });
-</script>
+      init: function () {
+        var m1 = document.querySelector('.ein-baum');
+        var m2 = document.querySelector('.marker-zwo');
+        const interactionMessage = document.querySelector(
+          '.interaction-message'
+        );
+        m1.addEventListener('markerFound', () => {
+          const overlay = window.document.querySelector('.top-overlay');
 
-<body style="margin : 0px; overflow: hidden;">
-    <a-scene class="camera-scene" embedded
-        arjs="sourceType: webcam; debugUIEnabled: true; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
-        <a-assets>
-            <a-asset-item id="tree" src="./assets/tree.gltf"></a-asset-item>
-            <a-asset-item id="houses" src="./assets/houses.gltf"></a-asset-item>
-        </a-assets>
-        <!-- Defines the marker that we are going to use. Notice that we are not providing the image file, but the  -->
-        <!-- "compiled" .patt file that we got from the online tool. the marker MUST BE ACCESSIBLE VIA HTTPS -->
-        <a-marker markerhandler type="barcode" value="0" class="ein-baum">
-            <a-gltf-model src="#tree"></a-gltf-model>
-            <a-entity text="value: 0; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0"></a-entity>
-        </a-marker>
-        <a-marker markerhandler type="barcode" value="1" class="marker-zwo">
-            <a-box color="tomato" depth="2" height="2" width="2"></a-box>
-            <a-entity text="value: 1; color: #BBB" position="5 0.2 0" scale="10 10 10" rotation="-90 0 0"></a-entity>
-        </a-marker>
-        <a-marker markerhandler type="barcode" value="2" class="dreiecke-überall">
-            <a-tetrahedron color="#FF926B" radius="5"></a-tetrahedron>
-        </a-marker>
-        <!--
+          interactionMessage.innerHTML = 'marker 1 found!';
+          overlay.classList.remove('hidden');
+          window.parent.document.querySelector('.item1').classList.add('found');
+        });
+        m2.addEventListener('markerFound', () => {
+          const overlay = window.document.querySelector('.top-overlay');
+
+          interactionMessage.innerHTML = 'marker 2 found!';
+          overlay.classList.remove('hidden');
+          window.parent.document.querySelector('.item2').classList.add('found');
+        });
+      },
+    });
+
+    const testFn = () => {
+      console.log();
+    };
+  </script>
+
+  <body style="margin: 0px; overflow: hidden">
+    <div class="top-overlay hidden">
+      <!-- <button onclick="testFn()">YO</button> -->
+      <img src="./text-deco.jpg" alt="" />
+      <span class="interaction-message">searching</span>
+      <img class="flipped-corner" src="./text-deco.jpg" alt="" />
+    </div>
+    <a-scene
+      class="camera-scene"
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+    >
+      <a-assets>
+        <a-asset-item id="tree" src="./assets/tree.gltf"></a-asset-item>
+        <a-asset-item id="houses" src="./assets/houses.gltf"></a-asset-item>
+      </a-assets>
+      <!-- Defines the marker that we are going to use. Notice that we are not providing the image file, but the  -->
+      <!-- "compiled" .patt file that we got from the online tool. the marker MUST BE ACCESSIBLE VIA HTTPS -->
+      <a-marker markerhandler type="barcode" value="0" class="ein-baum">
+        <a-gltf-model src="#tree"></a-gltf-model>
+        <a-entity
+          text="value: 0; color: #BBB"
+          position="5 0.2 0"
+          scale="10 10 10"
+          rotation="-90 0 0"
+        ></a-entity>
+      </a-marker>
+      <a-marker type="barcode" value="1" class="marker-zwo">
+        <a-box color="tomato" depth="2" height="2" width="2"></a-box>
+        <a-entity
+          text="value: 1; color: #BBB"
+          position="5 0.2 0"
+          scale="10 10 10"
+          rotation="-90 0 0"
+        ></a-entity>
+      </a-marker>
+      <a-marker type="barcode" value="2" class="dreiecke-ueberall">
+        <a-tetrahedron color="#FF926B" radius="5"></a-tetrahedron>
+      </a-marker>
+      <!--
         <a-marker type="barcode" value="3">
           <a-gltf-model src="#houses"></a-gltf-model>
           <a-entity
@@ -83,9 +118,8 @@
     
       -->
 
-        <!-- Define the camera of the scene -->
-        <a-camera-static> </a-camera-static>
+      <!-- Define the camera of the scene -->
+      <a-camera-static> </a-camera-static>
     </a-scene>
-</body>
-
+  </body>
 </html>
