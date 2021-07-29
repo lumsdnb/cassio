@@ -6,11 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- import the webpage's stylesheet -->
-
+    <link rel="stylesheet" type="text/css" href="./style.css" />
     <!-- import the webpage's javascript file -->
-    <script src="./iframeLoadScene.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="application/javascript" src="./iframeLoadScene.js"></script>
   </head>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+  </script>
 
   <script>
     const foundMarker = (id) => {
@@ -25,6 +29,7 @@
   <body>
     <div class="banner-img"></div>
     <h1>Cassiopeia Saga</h1>
+    span
     <p>
       ich bin dein Begleiter in unsere parallelen Geschichten. Lorem ipsum dolor
       sit amet consectetur, adipisicing elit. Optio modi commodi sapiente
@@ -33,6 +38,7 @@
     <h2>Deine Items</h2>
     <section class="collectables">
       <div class="item1 circle">?</div>
+      <div class="snapEl"></div>
       <div class="item2 circle">?</div>
       <div class="item3 circle">?</div>
       <div class="item4 circle">?</div>

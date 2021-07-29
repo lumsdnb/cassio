@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <script src="/aframe-master.min.js"></script>
+    <script src="/aframe-ar-nft.js"></script>
+    <script src="/html2canvas.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
 
   <!-- fire function when marker is detected -->
   <script>
+    const sceneEl = document.querySelector('.camera-scene');
+    sceneEl.addEventListener('render-target-loaded', function () {
+      // sceneEl.renderer is now set.
+    });
+
     AFRAME.registerComponent('markerhandler', {
       init: function () {
         var m1 = document.querySelector('.ein-baum');
@@ -37,13 +43,26 @@
     };
   </script>
 
+  <!-- -------- take screenshot--------  -->
+  <script>
+    const takeScreenshot = () => {
+      console.log('taking screenshot');
+      html2canvas(document.body).then((canvas) => {
+        const renderSnapEl = window.parent.document.querySelector('.snapEl');
+        document.body.appendChild(canvas);
+      });
+    };
+  </script>
+
   <body style="margin: 0px; overflow: hidden">
-    <div class="top-overlay hidden">
+    <div class="top-overlay">
       <!-- <button onclick="testFn()">YO</button> -->
       <img src="./text-deco.jpg" alt="" />
       <span class="interaction-message">searching</span>
+      <button onclick="takeScreenshot()">snap</button>
       <img class="flipped-corner" src="./text-deco.jpg" alt="" />
     </div>
+
     <a-scene
       class="camera-scene"
       embedded

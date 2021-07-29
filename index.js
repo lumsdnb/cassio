@@ -1,22 +1,22 @@
 const express = require('express');
-const path = require('path');
-
 const app = express();
-const port = 8080;
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require('socket.io');
+const io = new Server(server);
+var path = require('path');
 
-app.use(express.static(__dirname + '/'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'));
+  res.sendFile(__dirname + '/index.html');
+  console.log(__dirname);
 });
 
-app.get('/index.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'));
+io.on('connection', (socket) => {
+  console.log('a user connected');
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-app.listen(port, () => {
-  console.log('Running app...');
+server.listen(3000, () => {
+  console.log('listening on *:3000');
 });
