@@ -3,16 +3,18 @@
   <head>
     <script src="/aframe-master.min.js"></script>
     <script src="/aframe-ar-nft.js"></script>
-    <script src="/html2canvas.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
 
-  <!-- fire function when marker is detected -->
+  <!-- toggle info box on and off -->
   <script>
-    const sceneEl = document.querySelector('.camera-scene');
-    sceneEl.addEventListener('render-target-loaded', function () {
-      // sceneEl.renderer is now set.
-    });
+    let showItemInfo = (bool) => {
+      window.parent.document
+        .getElementById('collectible-info')
+        .classList.add('--hidden');
+    };
+
+
 
     AFRAME.registerComponent('markerhandler', {
       init: function () {
@@ -37,21 +39,6 @@
         });
       },
     });
-
-    const testFn = () => {
-      console.log();
-    };
-  </script>
-
-  <!-- -------- take screenshot--------  -->
-  <script>
-    const takeScreenshot = () => {
-      console.log('taking screenshot');
-      html2canvas(document.body).then((canvas) => {
-        const renderSnapEl = window.parent.document.querySelector('.snapEl');
-        document.body.appendChild(canvas);
-      });
-    };
   </script>
 
   <body style="margin: 0px; overflow: hidden">
@@ -59,7 +46,7 @@
       <!-- <button onclick="testFn()">YO</button> -->
       <img src="./text-deco.jpg" alt="" />
       <span class="interaction-message">searching</span>
-      <button onclick="takeScreenshot()">snap</button>
+      <button onclick=alert("yaa")>snap</button>
       <img class="flipped-corner" src="./text-deco.jpg" alt="" />
     </div>
 
@@ -140,5 +127,16 @@
       <!-- Define the camera of the scene -->
       <a-camera-static> </a-camera-static>
     </a-scene>
+    <script>
+          const sceneEl = document.querySelector('.camera-scene');
+    sceneEl.addEventListener('render-target-loaded', function () {
+      // sceneEl.renderer is now set.
+    });
+    </script>
   </body>
 </html>
+<style>
+  html {
+    width: 100vw;
+  }
+</style>

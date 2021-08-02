@@ -9,47 +9,121 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <!-- import the webpage's javascript file -->
     <script type="application/javascript" src="./iframeLoadScene.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
   </head>
 
-  <script src="/socket.io/socket.io.js"></script>
   <script>
     var socket = io();
+    const itemText = [
+      {
+        name: 'triangulis',
+        text: 'die geschichte von item eins',
+      },
+      {
+        name: 'itemzwo',
+        text: 'die geschichte von itemzwei',
+      },
+      {
+        name: 'item333',
+        text: 'nummer 3 auch am start',
+      },
+      {
+        name: 'vier',
+        text: 'item 4 ist hier',
+      },
+      {
+        name: 'fuenf',
+        text: 'item 5 ist hier so und macht so text',
+      },
+      {
+        name: '66',
+        text: 'item 6 ist hier so und macht so text',
+      },
+      {
+        name: '77777',
+        text: 'item 7 ist hier so und macht so text',
+      },
+      {
+        name: 'acht',
+        text: 'achtsam',
+      },
+    ];
   </script>
 
   <script>
     const foundMarker = (id) => {
       console.log(id);
     };
-    const testFn = () => {
-      const scene = document.querySelector('.camera-scene');
-      console.log(scene.contentWindow);
+    const loadItemInfo = (e) => {
+      const infoPanel = document.getElementById('collectible-info');
+      const infoPanelText = document.getElementById('collectible-info-text');
+      const infoPanelTitle = document.getElementById('collectible-info-title');
+      //get dom node
+      console.log(e.target.classList);
+      //check if item was found
+      if (e.target.classList.contains('found')) {
+        //if yes, load content of triggered collectible into panel
+        console.log('has been found already');
+        infoPanelTitle.innerHTML = itemText[e.target.dataset.id - 1].name;
+        infoPanelText.innerHTML = itemText[e.target.dataset.id - 1].text; // here
+        //and then show it to user
+        infoPanel.classList.remove('--hidden');
+      }
+      console.log('click');
+    };
+
+    const hideInfo = () => {
+      document.getElementById('collectible-info').classList.add('--hidden');
+    };
+    const handleAddScene = () => {
+      hideInfo();
+      addScene();
     };
   </script>
 
   <body>
-    <div class="banner-img"></div>
-    <h1>Cassiopeia Saga</h1>
-    span
-    <p>
-      ich bin dein Begleiter in unsere parallelen Geschichten. Lorem ipsum dolor
-      sit amet consectetur, adipisicing elit. Optio modi commodi sapiente
-      obcaecati deserunt perferendis ipsa beatae minima repellat quisquam.
-    </p>
-    <h2>Deine Items</h2>
-    <section class="collectables">
-      <div class="item1 circle">?</div>
-      <div class="snapEl"></div>
-      <div class="item2 circle">?</div>
-      <div class="item3 circle">?</div>
-      <div class="item4 circle">?</div>
-      <div class="item5 circle">?</div>
-      <div class="item6 circle">?</div>
-      <div class="item7 circle found">?</div>
-      <div class="item8 circle">?</div>
-    </section>
+    <div class="banner-img">
+      <h1>Cassiopeia Saga</h1>
+    </div>
+    <main>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus,
+        laborum nemo deserunt dicta molestiae similique.
+      </p>
+      <h2>Deine Items</h2>
+      <section class="collectibles">
+        <button data-id="1" class="item1 collectible found">❉</button>
+        <button data-id="2" class="item2 collectible">❉</button>
+        <button data-id="3" class="item3 collectible">❉</button>
+        <button data-id="4" class="item4 collectible">❉</button>
+        <button data-id="5" class="item5 collectible">❉</button>
+        <button data-id="6" class="item6 collectible">❉</button>
+        <button data-id="7" class="item7 collectible found">❉</button>
+        <button data-id="8" class="item8 collectible">❉</button>
+        <button data-id="9" class="item9 collectible">❉</button>
+        <button data-id="10" class="item10 collectible">❉</button>
+        <button data-id="11" class="item11 collectible">❉</button>
+        <button data-id="12" class="item12 collectible">❉</button>
+      </section>
+    </main>
 
+    <section id="collectible-info" class="--hidden">
+      <h2 id="collectible-info-title">item x</h2>
+      <div class="circle">yo</div>
+      <article>
+        <img
+          class="collectible-info-image"
+          src="./assets/item1.jpg"
+          alt="imag"
+        />
+        <p id="collectible-info-text">
+          gebaut im jahr 13 vor jesus christus dem herrn, bla dies das ananas
+        </p>
+        <button onclick="hideInfo()">ok</button>
+      </article>
+    </section>
     <footer>
-      <button class="camera-toggle-button" onclick="addScene()">
+      <button class="camera-toggle-button" onclick="handleAddScene()">
         <p>
           <svg
             width="90"
@@ -66,5 +140,13 @@
         </p>
       </button>
     </footer>
+
+    <script>
+      const collectiblesList = document.getElementsByClassName('collectible');
+      Array.from(collectiblesList).forEach((child) => {
+        console.log(child);
+        child.addEventListener('click', loadItemInfo);
+      });
+    </script>
   </body>
 </html>
