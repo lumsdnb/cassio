@@ -6,9 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/style.css" />
     <!-- import the webpage's javascript file -->
-    <script type="application/javascript" src="./iframeLoadScene.js"></script>
+    <script
+      type="application/javascript"
+      src="/assets/iframeLoadScene.js"
+    ></script>
     <script src="/socket.io/socket.io.js"></script>
   </head>
 
@@ -62,6 +65,9 @@
       console.log(e.target.classList);
       //check if item was found
       if (e.target.classList.contains('found')) {
+        document
+          .getElementById('camera-toggle-button')
+          .classList.add('--hidden');
         //if yes, load content of triggered collectible into panel
         console.log('has been found already');
         infoPanelTitle.innerHTML = itemText[e.target.dataset.id - 1].name;
@@ -74,6 +80,9 @@
 
     const hideInfo = () => {
       document.getElementById('collectible-info').classList.add('--hidden');
+      document
+        .getElementById('camera-toggle-button')
+        .classList.remove('--hidden');
     };
     const handleAddScene = () => {
       hideInfo();
@@ -113,17 +122,19 @@
       <article>
         <img
           class="collectible-info-image"
-          src="./assets/item1.jpg"
+          src="https://source.unsplash.com/random/200×200"
           alt="imag"
         />
-        <p id="collectible-info-text">
-          gebaut im jahr 13 vor jesus christus dem herrn, bla dies das ananas
-        </p>
+        <p id="collectible-info-text">hier kommt der text vom item rein</p>
         <button onclick="hideInfo()">ok</button>
       </article>
     </section>
     <footer>
-      <button class="camera-toggle-button" onclick="handleAddScene()">
+      <button
+        id="camera-toggle-button"
+        class="camera-toggle-button"
+        onclick="handleAddScene()"
+      >
         <p>
           <svg
             width="90"
