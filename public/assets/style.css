@@ -36,6 +36,21 @@ h6 {
   position: fixed;
   top: 0;
 }
+#camera-toggle-button {
+  position: absolute;
+  height: fit-content;
+  bottom: 0;
+  transform: translate(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#camera-toggle-button > * {
+  width: 6rem;
+  height: 6rem;
+}
 
 p {
   font-family: 'et', 'Times New Roman', Times, serif;
@@ -44,25 +59,21 @@ p {
 
 .banner-img {
   background: url('./banner.jpg');
-  height: 10vh;
+  height: 15vh;
   width: 100vw;
   user-select: none;
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
 }
-
-.buttons {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
+h1 {
+  font-size: 2.86rem;
+  position: relative;
+  color: rgb(233, 233, 233);
+  filter: drop-shadow(3px 3px 0px black) drop-shadow(-1px -1px 0px black);
+  /* bottom: 10rem; */
 }
+
 main {
   /* padding-top: 10rem;
   border-radius: 50% 50% 0 0; */
@@ -70,12 +81,8 @@ main {
   border-radius: var(--brad);
   width: 90%;
 }
-h1 {
-  font-size: 2.6rem;
-  position: relative;
-  color: rgb(0, 0, 0);
-  background-color: white;
-  /* bottom: 10rem; */
+.intro-paragraph {
+  padding: 0 1.6rem;
 }
 
 .collectible {
@@ -93,6 +100,7 @@ h1 {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  opacity: 0.2;
 }
 .collectible:hover {
   transform: scale(1.1);
@@ -104,7 +112,8 @@ h1 {
   transform: scale(0.9);
 }
 
-.found {
+.--found {
+  opacity: 1;
   background-color: yellow;
 }
 
@@ -129,24 +138,11 @@ h1 {
 
 .--hidden {
   visibility: hidden;
+  position: absolute;
 }
 .collectible-info-image {
   width: 15rem;
   height: 18rem;
-}
-
-footer {
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  z-index: 3;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-footer > * {
-  width: 100%;
 }
 
 iframe {
@@ -178,7 +174,6 @@ iframe {
   background-color: #202020;
   user-select: none;
   border-radius: 0.5rem;
-  z-index: 5;
 }
 .testbtn {
   z-index: 55;
@@ -209,4 +204,33 @@ iframe {
 
 .flipped-corner {
   transform: scaleX(-1);
+}
+
+.camera-scene {
+  position: fixed;
+  top: 0;
+}
+#camera-toggle-button {
+  height: fit-content;
+  width: 100%;
+  bottom: 0;
+  transform: translate(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+footer {
+  position: fixed;
+  height: fit-content;
+  bottom: 0;
+  width: 100%;
+  transform: translateX(50%);
+  z-index: 9;
+}
+
+footer > * {
+  width: 100%;
 }

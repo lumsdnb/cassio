@@ -1,16 +1,21 @@
 function addScene() {
   console.log('loading cam');
   if (!document.querySelector('.camera-scene')) {
+    //if not in vr mode, start cam etc
     var scene = document.createElement('iframe');
     scene.classList.add('camera-scene');
     scene.setAttribute('src', 'ar.html');
     scene.setAttribute('height', '100vh');
     document.querySelector('body').appendChild(scene);
-    document.querySelector('.camera-toggle-button').innerHTML =
-      '<p>kamera schliesen</p>';
+
+    // toggle camera button
+    document.getElementById('open-eye-icon').classList.remove('--hidden');
+    document.getElementById('closed-eye-icon').classList.add('--hidden');
   } else {
     document.querySelector('.camera-scene').remove();
-    document.querySelector('.camera-toggle-button').innerHTML =
-      '<p>Hinweise suchen</p>';
+
+    // toggle camera button
+    document.getElementById('open-eye-icon').classList.add('--hidden');
+    document.getElementById('closed-eye-icon').classList.remove('--hidden');
   }
 }
