@@ -8,10 +8,7 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" type="text/css" href="/assets/style.css" />
     <!-- import the webpage's javascript file -->
-    <script
-      type="application/javascript"
-      src="/assets/iframeLoadScene.js"
-    ></script>
+    <script src="/assets/iframeLoadScene.js"></script>
     <!-- <script src="/socket.io/socket.io.js"></script> -->
   </head>
 
@@ -114,6 +111,7 @@
     </main>
 
     <section id="collectible-info" class="--hidden">
+      <button onclick="hideInfo()">X</button>
       <h2 id="collectible-info-title">item x</h2>
       <div class="circle">yo</div>
       <article>
@@ -123,7 +121,6 @@
           alt="imag"
         />
         <p id="collectible-info-text">hier kommt der text vom item rein</p>
-        <button onclick="hideInfo()">ok</button>
       </article>
     </section>
     <footer>
