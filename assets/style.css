@@ -128,7 +128,7 @@ main {
   min-width: 90vw;
   min-height: 30vh;
   position: absolute;
-  top: 10vh;
+  top: 4rem;
   background-color: var(--white);
   margin: 1rem;
   padding: 1rem;
