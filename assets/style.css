@@ -127,8 +127,8 @@ main {
 #collectible-info {
   min-width: 90vw;
   min-height: 30vh;
-  position: relative;
-  bottom: 50vh;
+  position: absolute;
+  top: 10vh;
   background-color: var(--white);
   margin: 1rem;
   padding: 1rem;
