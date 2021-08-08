@@ -57,15 +57,6 @@ p {
   font-size: 1.3rem;
 }
 
-.banner-img {
-  background: url('./banner.jpg');
-  height: 15vh;
-  width: 100vw;
-  user-select: none;
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
-}
 h1 {
   font-size: 2.86rem;
   position: relative;
@@ -128,24 +119,12 @@ main {
   min-width: 90vw;
   min-height: 30vh;
   position: absolute;
-  top: 4rem;
+  top: 10vh;
   background-color: var(--white);
   margin: 1rem;
   padding: 1rem;
   border-radius: 0.15rem;
   filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.419));
-}
-#collectible-info > button {
-  padding: 0.6rem;
-  width: 3rem;
-  height: 3rem;
-  font-size: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
 }
 
 .--hidden {
@@ -195,19 +174,25 @@ iframe {
 }
 
 .top-overlay {
-  font-size: 3rem;
+  font-size: 2rem;
   font-family: 'eckmann', Courier, monospace;
   width: 100%;
   z-index: 55;
   position: absolute;
   top: 0;
-  left: 0vw;
+  height: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
   background: url('./gray.jpg');
-  padding: 2rem 1rem;
+  padding: 0 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.top-overlay>img{
+  height: 3rem;
+
 }
 
 .hidden {

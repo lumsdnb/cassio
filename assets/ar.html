@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="./assets/aframe-master.min.js"></script>
-    <script src="./assets/aframe-ar-nft.js"></script>
-    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
+    <script src="./aframe-master.min.js"></script>
+    <script src="./aframe-ar-nft.js"></script>
+    <link rel="stylesheet" type="text/css" href="./ar-style.css" />
   </head>
 
   <!-- toggle info box on and off, currently unused -->
@@ -24,29 +24,28 @@
         const m6 = document.querySelector('.mark6');
         const m7 = document.querySelector('.mark7');
 
-        const interactionMessage = document.querySelector(
-          '.interaction-message'
-        );
-        triggerOverlay('marker 2 was found');
+        function triggerOverlay(text) {
+          const interactionMessage = document.querySelector(
+            '.interaction-message'
+          );
+          interactionMessage.textContent = text;
+        }
         m1.addEventListener('markerFound', () => {
-          const overlay = window.document.querySelector('.top-overlay');
-          interactionMessage.innerHTML = 'marker 1 was found';
+          triggerOverlay('marker 1 was found');
           overlay.classList.remove('hidden');
           window.parent.document
             .querySelector('.item1')
             .classList.add('--found');
         });
         m2.addEventListener('markerFound', () => {
-          const overlay = window.document.querySelector('.top-overlay');
-          interactionMessage.innerHTML = 'marker 2 was found';
+          triggerOverlay('marker 2 was found');
           overlay.classList.remove('hidden');
           window.parent.document
             .querySelector('.item2')
             .classList.add('--found');
         });
         m3.addEventListener('markerFound', () => {
-          const overlay = window.document.querySelector('.top-overlay');
-          interactionMessage.innerHTML = 'marker 3 was found';
+          triggerOverlay('marker 3 was found');
           overlay.classList.remove('hidden');
           window.parent.document
             .querySelector('.item3')
@@ -93,9 +92,9 @@
   <body style="margin: 0px; overflow: hidden">
     <div class="top-overlay">
       <!-- <button onclick="testFn()">YO</button> -->
-      <img src="./assets/text-deco.jpg" alt="" />
+      <img src="./text-deco.jpg" alt="" />
       <span class="interaction-message">searching</span>
-      <img class="flipped-corner" src="./assets/text-deco.jpg" alt="" />
+      <img class="flipped-corner" src="./text-deco.jpg" alt="" />
     </div>
 
     <a-scene
@@ -104,18 +103,19 @@
       arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
     >
       <a-assets>
-        <a-asset-item id="tree" src="./assets/tree.gltf"></a-asset-item>
-        <a-asset-item id="houses" src="./assets/houses.gltf"></a-asset-item>
+        <a-asset-item id="tree" src="./tree.gltf"></a-asset-item>
+        <a-asset-item id="houses" src="./houses.gltf"></a-asset-item>
       </a-assets>
       <!-- Defines the marker that we are going to use. Notice that we are not providing the image file, but the  -->
       <!-- "compiled" .patt file that we got from the online tool. the marker MUST BE ACCESSIBLE VIA HTTPS -->
       <a-marker markerhandler type="barcode" value="0" class="mark1">
-        <!-- <a-gltf-model src="#tree"></a-gltf-model> -->
-        <a-box
-          position="0 0.5 0"
-          material="color: red; transparent: true; opacity: 0.50;"
-        >
-        </a-box>
+        <a-gltf-model src="#tree"></a-gltf-model>
+        <a-entity
+          text="value: 0; color: #BBB"
+          position="5 0.2 0"
+          scale="10 10 10"
+          rotation="-90 0 0"
+        ></a-entity>
       </a-marker>
       <a-marker type="barcode" value="1" class="mark2">
         <a-box color="tomato" depth="2" height="2" width="2"></a-box>
