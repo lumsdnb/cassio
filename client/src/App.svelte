@@ -1,7 +1,7 @@
 <script>
-	import { fade } from 'svelte/transition';
+	import { fade, slide } from 'svelte/transition';
 	import InfoPanel from './InfoPanel.svelte'
-	let showInfoBox=false
+	let showInfoPanel=false
 	let currentSelectedItem=0
 
 	function addScene() {
@@ -47,10 +47,10 @@
     };
 
     const hideInfo = () => {
-		showInfoBox=false
+		showInfoPanel=false
     };
     const handleAddScene = () => {
-		showInfoBox=false
+		showInfoPanel=false
       document.getElementById('open-eye-icon').classList.remove('--hidden');
       document.getElementById('closed-eye-icon').classList.remove('--hidden');
 
@@ -100,7 +100,7 @@
 		if (this.classList.contains("--found")) {
 			console.log("unlocked");
 			currentSelectedItem=this.dataset.id-1
-			showInfoBox=true
+			showInfoPanel=true
 		}
 		console.log(this);
 	}
@@ -138,8 +138,11 @@
         <button data-id="12" class="item12 collectible">❉</button> -->
       </section>
     </main>
-	{#if showInfoBox}
-		<InfoBox itemName={itemText[currentSelectedItem].name} itemDescription={itemText[currentSelectedItem].text} on:click={hideInfo} />
+	{#if showInfoPanel}
+<div class="overlay" transition:fade={{duration:100}}>
+
+  <InfoPanel itemName={itemText[currentSelectedItem].name} itemDescription={itemText[currentSelectedItem].text} on:click={hideInfo} />
+</div>
 	{/if}
     <footer>
       <button
@@ -182,6 +185,10 @@
 
 <style>
 
-
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
 </style>
