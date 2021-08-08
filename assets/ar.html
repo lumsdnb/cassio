@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
     <script src="./aframe-master.min.js"></script>
     <script src="./aframe-ar-nft.js"></script>
     <link rel="stylesheet" type="text/css" href="./ar-style.css" />
@@ -29,61 +30,41 @@
             '.interaction-message'
           );
           interactionMessage.textContent = text;
+          overlay.parent.classList.remove('hidden');
         }
         m1.addEventListener('markerFound', () => {
           triggerOverlay('marker 1 was found');
-          overlay.classList.remove('hidden');
           window.parent.document
             .querySelector('.item1')
             .classList.add('--found');
         });
         m2.addEventListener('markerFound', () => {
           triggerOverlay('marker 2 was found');
-          overlay.classList.remove('hidden');
           window.parent.document
             .querySelector('.item2')
             .classList.add('--found');
         });
         m3.addEventListener('markerFound', () => {
           triggerOverlay('marker 3 was found');
-          overlay.classList.remove('hidden');
           window.parent.document
             .querySelector('.item3')
             .classList.add('--found');
         });
         m4.addEventListener('markerFound', () => {
-          const overlay = window.document.querySelector('.top-overlay');
-          interactionMessage.innerHTML = 'marker 4 was found';
-          overlay.classList.remove('hidden');
+          triggerOverlay('marker 4 was found');
 
           window.parent.document
             .querySelector('.item4')
             .classList.add('--found');
         });
         m5.addEventListener('markerFound', () => {
-          const overlay = window.document.querySelector('.top-overlay');
-          interactionMessage.innerHTML = 'marker 5 was found';
-          overlay.classList.remove('hidden');
-
-          window.parent.document
-            .querySelector('.item5')
-            .classList.add('--found');
+          triggerOverlay('marker 5 was found');
         });
         m6.addEventListener('markerFound', () => {
-          const overlay = window.document.querySelector('.top-overlay');
-          interactionMessage.innerHTML = 'marker 6 was found';
-          overlay.classList.remove('hidden');
-          window.parent.document
-            .querySelector('.item6')
-            .classList.add('--found');
+          triggerOverlay('marker 6 was found');
         });
         m7.addEventListener('markerFound', () => {
-          const overlay = window.document.querySelector('.top-overlay');
-          interactionMessage.innerHTML = 'marker 7 was found';
-          overlay.classList.remove('hidden');
-          window.parent.document
-            .querySelector('.item7')
-            .classList.add('--found');
+          triggerOverlay('marker 7 was found');
         });
       },
     });
