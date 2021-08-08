@@ -1,50 +1,56 @@
 <script>
 	import { fade } from 'svelte/transition';
+	import InfoPanel from './InfoPanel.svelte'
+	let showInfoBox=false
+	let currentSelectedItem=0
 
 	function addScene() {
+		// adds arjs iframe to scene or removes it if button is pressed again
 		console.log('loading cam');
-  if (!document.querySelector('.camera-scene')) {
-    //if not in vr mode, start cam etc
-    var scene = document.createElement('iframe');
-    scene.classList.add('camera-scene');
-    scene.setAttribute('src', '/assets/ar.html');
-    scene.setAttribute('height', '100vh');
-    document.querySelector('body').appendChild(scene);
+  		if (!document.querySelector('.camera-scene')) {
+    		//if not in vr mode, start cam etc
+    		var scene = document.createElement('iframe');
+    		scene.classList.add('camera-scene');
+	    	scene.setAttribute('src', '/assets/ar.html');
+    		scene.setAttribute('height', '100vh');
+	    	document.querySelector('body').appendChild(scene);
 
-    // toggle camera button
-    document.getElementById('open-eye-icon').classList.remove('--hidden');
-    document.getElementById('closed-eye-icon').classList.add('--hidden');
-  } else {
-    document.querySelector('.camera-scene').remove();
+			// toggle camera button
+			document.getElementById('open-eye-icon').classList.remove('--hidden');
+		    document.getElementById('closed-eye-icon').classList.add('--hidden');
+		} 
+		else {
+			document.querySelector('.camera-scene').remove();
 
-    // toggle camera button
-    document.getElementById('open-eye-icon').classList.add('--hidden');
-    document.getElementById('closed-eye-icon').classList.remove('--hidden');
-  }
-}
+			// toggle camera button
+			document.getElementById('open-eye-icon').classList.add('--hidden');
+			document.getElementById('closed-eye-icon').classList.remove('--hidden');
+  		}
+	}
 
-function loadItemInfo(e) {
-      const infoPanel = document.getElementById('collectible-info');
-      const infoPanelText = document.getElementById('collectible-info-text');
-      const infoPanelTitle = document.getElementById('collectible-info-title');
-      //get dom node
-      console.log(e.target.classList);
-      //check if item was found
-      if (e.target.classList.contains('--found')) {
-        //if yes, load content of triggered collectible into panel
-        console.log('has been found already');
-        infoPanelTitle.innerHTML = itemText[e.target.dataset.id - 1].name;
-        infoPanelText.innerHTML = itemText[e.target.dataset.id - 1].text; // here
-        //and then show it to user
-        infoPanel.classList.remove('--hidden');
-      }
-      console.log('click');
+	function loadItemInfo(e) {
+		const infoPanel = document.getElementById('collectible-info');
+		const infoPanelText = document.getElementById('collectible-info-text');
+		const infoPanelTitle = document.getElementById('collectible-info-title');
+		//get dom node
+		console.log(e.target.classList);
+		//check if item was found
+		if (e.target.classList.contains('--found')) {
+			//if yes, load content of triggered collectible into panel
+			console.log('has been found already');
+			infoPanelTitle.innerHTML = itemText[e.target.dataset.id - 1].name;
+			infoPanelText.innerHTML = itemText[e.target.dataset.id - 1].text; // here
+			//and then show it to user
+			infoPanel.classList.remove('--hidden');
+		}
+		console.log('click');
     };
 
     const hideInfo = () => {
-      document.getElementById('collectible-info').classList.add('--hidden');
+		showInfoBox=false
     };
     const handleAddScene = () => {
+		showInfoBox=false
       document.getElementById('open-eye-icon').classList.remove('--hidden');
       document.getElementById('closed-eye-icon').classList.remove('--hidden');
 
@@ -93,9 +99,12 @@ function loadItemInfo(e) {
 	function testFn(){
 		if (this.classList.contains("--found")) {
 			console.log("unlocked");
+			currentSelectedItem=this.dataset.id-1
+			showInfoBox=true
 		}
 		console.log(this);
 	}
+
 </script>
 
 
@@ -109,6 +118,7 @@ function loadItemInfo(e) {
         Als ich hier gelandet bin, sind mir ein paar Geschichten aus dem Rucksack
         gefallen. Sie haben sich in verschiedenen Dimensionen versteckt.
       </p>
+
       <h2>bisher gefunden:</h2>
       <section class="collectibles">
 		  {#each itemText as items, i }
@@ -128,20 +138,9 @@ function loadItemInfo(e) {
         <button data-id="12" class="item12 collectible">❉</button> -->
       </section>
     </main>
-
-    <section id="collectible-info" class="--hidden">
-      <h2 id="collectible-info-title">item x</h2>
-      <div class="circle">yo</div>
-      <article>
-        <img
-          class="collectible-info-image"
-          src="https://source.unsplash.com/random/200×200"
-          alt="imag"
-        />
-        <p id="collectible-info-text">hier kommt der text vom item rein</p>
-        <button onclick="hideInfo()">ok</button>
-      </article>
-    </section>
+	{#if showInfoBox}
+		<InfoBox itemName={itemText[currentSelectedItem].name} itemDescription={itemText[currentSelectedItem].text} on:click={hideInfo} />
+	{/if}
     <footer>
       <button
         id="camera-toggle-button"
