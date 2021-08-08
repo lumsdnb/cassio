@@ -14,7 +14,7 @@
       showCameraScene = true;
       var scene = document.createElement('iframe');
       scene.classList.add('camera-scene');
-      scene.setAttribute('src', '/assets/ar.html');
+      scene.setAttribute('src', './assets/ar.html');
       scene.setAttribute('height', '100vh');
       document.querySelector('body').appendChild(scene);
 
@@ -194,7 +194,7 @@
 
 <style>
   .banner-img {
-  background: url('./assets/banner.jpg');
+  background: url('../assets/banner.jpg');
   height: 10vh;
   width: 100vw;
   user-select: none;
