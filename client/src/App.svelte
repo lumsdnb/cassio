@@ -1,63 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Hello!</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/assets/style.css" />
-    <!-- import the webpage's javascript file -->
-    <script
-      type="application/javascript"
-      src="/assets/iframeLoadScene.js"
-    ></script>
-    <script src="/socket.io/socket.io.js"></script>
-  </head>
+<script>
+	import { fade } from 'svelte/transition';
 
-  <script>
-    var socket = io();
-    const itemText = [
-      {
-        name: 'triangulis',
-        text: 'die geschichte von item eins',
-      },
-      {
-        name: 'itemzwo',
-        text: 'die geschichte von itemzwei',
-      },
-      {
-        name: 'item333',
-        text: 'nummer 3 auch am start',
-      },
-      {
-        name: 'vier',
-        text: 'item 4 ist hier',
-      },
-      {
-        name: 'fuenf',
-        text: 'item 5 ist hier so und macht so text',
-      },
-      {
-        name: '66',
-        text: 'item 6 ist hier so und macht so text',
-      },
-      {
-        name: '77777',
-        text: 'item 7 ist hier so und macht so text',
-      },
-      {
-        name: 'acht',
-        text: 'achtsam',
-      },
-    ];
-  </script>
+	function addScene() {
+		console.log('loading cam');
+  if (!document.querySelector('.camera-scene')) {
+    //if not in vr mode, start cam etc
+    var scene = document.createElement('iframe');
+    scene.classList.add('camera-scene');
+    scene.setAttribute('src', '/assets/ar.html');
+    scene.setAttribute('height', '100vh');
+    document.querySelector('body').appendChild(scene);
 
-  <script>
-    const foundMarker = (id) => {
-      console.log(id);
-    };
-    const loadItemInfo = (e) => {
+    // toggle camera button
+    document.getElementById('open-eye-icon').classList.remove('--hidden');
+    document.getElementById('closed-eye-icon').classList.add('--hidden');
+  } else {
+    document.querySelector('.camera-scene').remove();
+
+    // toggle camera button
+    document.getElementById('open-eye-icon').classList.add('--hidden');
+    document.getElementById('closed-eye-icon').classList.remove('--hidden');
+  }
+}
+
+function loadItemInfo(e) {
       const infoPanel = document.getElementById('collectible-info');
       const infoPanelText = document.getElementById('collectible-info-text');
       const infoPanelTitle = document.getElementById('collectible-info-title');
@@ -85,21 +51,71 @@
       hideInfo();
       addScene();
     };
-  </script>
+	
+	const itemText = [
+		{
+			name: 'triangulis',
+			text: 'die geschichte von item eins',
+		},
+      {
+        name: 'itemzwo',
+        text: 'die geschichte von itemzwei',
+      },
+      {
+        name: 'item333',
+        text: 'nummer 3 auch am start',
+      },
+      {
+        name: 'vier',
+        text: 'item 4 ist hier',
+      },
+      {
+        name: 'fuenf',
+        text: 'item 5 ist hier so und macht so text',
+      },
+      {
+        name: '66',
+        text: 'item 6 ist hier so und macht so text',
+      },
+      {
+        name: '77777',
+        text: 'item 7 ist hier so und macht so text',
+      },
+      {
+        name: 'acht',
+        text: 'achtsam und so',
+      },
+	  {
+        name: 'neun',
+        text: 'neun ist ne gute zahl',
+      }
+    ];
+	function testFn(){
+		if (this.classList.contains("--found")) {
+			console.log("unlocked");
+		}
+		console.log(this);
+	}
+</script>
 
-  <body>
-    <div class="banner-img">
-      <h1>Cassiopeias Saga</h1>
-    </div>
-    <main>
+
+<div class="banner-img">
+  <h1>Cassiopeias Saga</h1>
+</div>
+
+<main>
+
       <p class="intro-paragraph">
-        Als ich gelandet bin, sind mir ein paar Geschichten aus dem Rucksack
-        gefallen. Sie haben sich hier in verschiedenen Dimensionen versteckt.
+        Als ich hier gelandet bin, sind mir ein paar Geschichten aus dem Rucksack
+        gefallen. Sie haben sich in verschiedenen Dimensionen versteckt.
       </p>
       <h2>bisher gefunden:</h2>
       <section class="collectibles">
-        <button data-id="1" class="item1 collectible --found">❉</button>
-        <button data-id="2" class="item2 collectible">❉</button>
+		  {#each itemText as items, i }
+			  
+		  <button on:click={testFn} data-id={i+1} class={`item${i+1} collectible ${i<3?"--found":""}`}>❉</button>
+		  {/each}
+        <!-- <button data-id="2" class="item2 collectible">❉</button>
         <button data-id="3" class="item3 collectible">❉</button>
         <button data-id="4" class="item4 collectible">❉</button>
         <button data-id="5" class="item5 collectible">❉</button>
@@ -109,7 +125,7 @@
         <button data-id="9" class="item9 collectible">❉</button>
         <button data-id="10" class="item10 collectible">❉</button>
         <button data-id="11" class="item11 collectible">❉</button>
-        <button data-id="12" class="item12 collectible">❉</button>
+        <button data-id="12" class="item12 collectible">❉</button> -->
       </section>
     </main>
 
@@ -130,7 +146,7 @@
       <button
         id="camera-toggle-button"
         class="camera-toggle-button"
-        onclick="handleAddScene()"
+        on:click={handleAddScene}
       >
         <svg
           id="open-eye-icon"
@@ -165,12 +181,8 @@
       </button>
     </footer>
 
-    <script>
-      const collectiblesList = document.getElementsByClassName('collectible');
-      Array.from(collectiblesList).forEach((child) => {
-        console.log(child);
-        child.addEventListener('click', loadItemInfo);
-      });
-    </script>
-  </body>
-</html>
+<style>
+
+
+
+</style>

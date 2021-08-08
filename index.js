@@ -11,10 +11,10 @@ const { Server } = require('socket.io');
 const io = new Server(server);
 var path = require('path');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client/public')));
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + 'index.html');
   console.log(__dirname);
 });
 
