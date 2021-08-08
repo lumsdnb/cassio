@@ -194,7 +194,7 @@
 
 <style>
   .banner-img {
-  background: url('/assets/banner.jpg');
+  background: url('./assets/banner.jpg');
   height: 10vh;
   width: 100vw;
   user-select: none;
