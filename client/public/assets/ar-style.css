@@ -13,6 +13,18 @@ html {
   --white: rgb(243, 243, 243);
   --brad: 0.15rem;
 }
+
+.test-buttons {
+  z-index: 9;
+  position: relative;
+  top: 10rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.test-buttons > * {
+  padding: 1.5rem;
+}
 body {
   margin: 0px;
   max-width: 45rem;
@@ -190,9 +202,8 @@ iframe {
   align-items: center;
   justify-content: center;
 }
-.top-overlay>img{
+.top-overlay > img {
   height: 3rem;
-
 }
 
 .hidden {

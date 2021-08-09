@@ -65,7 +65,7 @@
   const itemText = [
     {
       name: 'triangulis',
-      text: 'die geschichte von item eins. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, iure! Quibusdam possimus repellat placeat ad explicabo a nisi. At exercitationem rerum pariatur nemo, a similique nobis delectus soluta, magnam autem suscipit beatae recusandae quibusdam quam sapiente perferendis quod maxime omnis!',
+      text: 'Triangulis  nennt sich die Welt der Dreieckspersonen. In dieser Welt wird nichts zu zweit getan, sondern alles zu dritt erledigt, so gibt es auch das ja, das nein und das, wer weiß?. Ja, selbst beim Fußball spielen drei Teams gegeneinander. Der tag hat drei Phasen, den Aufgang der ersten sonne, die Phase in der beide Sonnen zu sehen sind und die letzte Phase in der nur eine der beiden sonnen zu sehen ist. Welt 1 besser bekannt als Trianga (oder Azurien) leben sehr besondere Lebewesen. Sie sind Dreiecke. Da der Planet seine Stern sehr eng umkreist, haben sich auf dieser sumpfigen Wasserwelt Lebewesen in dreieckiger Form gebildet. Sie währen nie auf den Gedanken gekommen, eine Frage nach einem Ja oder einem Nein zu stellen, viel mehr würden sie dich aus 3 verschiedenen Kontexten heraus nach der cleversten Lösung nach einem Problem fragen. Die Trainguilaner betreiben uns fremden Koitus. Sie ... tedraeder etc. Schenekel in der länge verändern ... Extrem krasse lebewesen aus formen die man aus drei-ecken bilden kann. Sie Leben alle in frieden und es gibt ein gleich Gewicht zwischen den verschiedenen Lebensformen: 3 Ecke sind für die Fortpflanzung zu ständig. Die 4 Ecke, sind die Gebäudebauer und Architekten 5 ecke sind richtige Profis in der Küche und in vielen handwerklichen dingen6 ecke sind optimal zu verteidigungszwecken gegen Asteroiden - sie können nämlich fliegen da sie sechs Flügel habenJedes Lebewesen, egal in welcher form es geboren wird, kann zurück in das Dreiecksstadium fallen, wenn es sich fortpflanzen mag.',
     },
     {
       name: 'itemzwo',
@@ -100,6 +100,16 @@
       text: 'neun ist ne gute zahl',
     },
   ];
+
+  const foundItems=[0,0,0,0,0,0,0]
+
+  // Get index of found marker sent from iFrame
+  window.addEventListener('message', function(e) {
+    const data = e.data;
+    foundItems[e.data]=1
+  console.log('marker ' + e.data);    
+});
+
   function testFn() {
     if (this.classList.contains('--found')) {
       console.log('unlocked');
@@ -135,7 +145,7 @@
       <button
         on:click={testFn}
         data-id={i + 1}
-        class={`item${i + 1} collectible ${i < 3 ? '--found' : ''}`}>❉</button
+        class={`item${i + 1} collectible ${foundItems[i] ==1 ? '--found' : ''}`}>❉</button
       >
     {/each}
     <!-- <button data-id="2" class="item2 collectible">❉</button>
