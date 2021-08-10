@@ -7,42 +7,37 @@
     <link rel="stylesheet" type="text/css" href="./ar-style.css" />
   </head>
 
-  <!-- toggle info box on and off, currently unused -->
   <script>
-    let showItemInfo = (bool) => {
-      window.parent.document
-        .getElementById('collectible-info')
-        .classList.add('--hidden');
-    };
+    function triggerOverlay(text) {
+      const interactionMessage = document.querySelector('.interaction-message');
+      interactionMessage.textContent = text;
+      overlay.parent.classList.remove('hidden');
+    }
 
     AFRAME.registerComponent('markerhandler', {
       init: function () {
+        const m0 = document.querySelector('.mark0');
         const m1 = document.querySelector('.mark1');
         const m2 = document.querySelector('.mark2');
         const m3 = document.querySelector('.mark3');
         const m4 = document.querySelector('.mark4');
         const m5 = document.querySelector('.mark5');
         const m6 = document.querySelector('.mark6');
-        const m7 = document.querySelector('.mark7');
 
-        function triggerOverlay(text) {
-          const interactionMessage = document.querySelector(
-            '.interaction-message'
-          );
-          interactionMessage.textContent = text;
-          overlay.parent.classList.remove('hidden');
-        }
-        m1.addEventListener('markerFound', () => {
+        m0.addEventListener('markerFound', () => {
           triggerOverlay('marker 1 was found');
           window.parent.document
             .querySelector('.item1')
             .classList.add('--found');
         });
-        m2.addEventListener('markerFound', () => {
-          triggerOverlay('marker 2 was found');
+        m1.addEventListener('markerFound', () => {
+          triggerOverlay('marker 1 was found');
           window.parent.document
             .querySelector('.item2')
             .classList.add('--found');
+        });
+        m2.addEventListener('markerFound', () => {
+          triggerOverlay('marker 2 was found');
         });
         m3.addEventListener('markerFound', () => {
           triggerOverlay('marker 3 was found');
@@ -63,19 +58,33 @@
         m6.addEventListener('markerFound', () => {
           triggerOverlay('marker 6 was found');
         });
-        m7.addEventListener('markerFound', () => {
-          triggerOverlay('marker 7 was found');
-        });
       },
     });
+
+    // send message to parent window
+    const handleMarkerTrigger = (e) => {
+      const overlay = document.querySelector('.top-overlay');
+      overlay.textContent = `marker ${e}`;
+      window.parent.postMessage(e, '*');
+    };
   </script>
 
   <body style="margin: 0px; overflow: hidden">
     <div class="top-overlay">
       <!-- <button onclick="testFn()">YO</button> -->
       <img src="./text-deco.jpg" alt="" />
-      <span class="interaction-message">searching</span>
+      <span class="interaction-message">...</span>
       <img class="flipped-corner" src="./text-deco.jpg" alt="" />
+    </div>
+
+    <div class="test-buttons">
+      <button onclick="handleMarkerTrigger(0)">trigger marker 0</button>
+      <button onclick="handleMarkerTrigger(1)">trigger marker 1</button>
+      <button onclick="handleMarkerTrigger(2)">trigger marker 2</button>
+      <button onclick="handleMarkerTrigger(3)">trigger marker 3</button>
+      <button onclick="handleMarkerTrigger(4)">trigger marker 4</button>
+      <button onclick="handleMarkerTrigger(5)">trigger marker 5</button>
+      <button onclick="handleMarkerTrigger(6)">trigger marker 6</button>
     </div>
 
     <a-scene
