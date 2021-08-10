@@ -71,8 +71,9 @@ main {
   background-color: white;
   border-radius: var(--brad);
   width: 90%;
+  padding-bottom: 1rem;
+  border-radius: 0 0 4rem 4rem;
   margin-bottom: 5rem;
-  min-height: fit-content;
 }
 .intro-paragraph {
   padding: 0 1.6rem;
