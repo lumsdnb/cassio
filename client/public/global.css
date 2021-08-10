@@ -37,7 +37,7 @@ h6 {
   top: 0;
 }
 #camera-toggle-button {
-  position: absolute;
+  position: fixed;
   height: fit-content;
   bottom: 0;
   transform: translate(-50%);
@@ -71,6 +71,8 @@ main {
   background-color: white;
   border-radius: var(--brad);
   width: 90%;
+  margin-bottom: 5rem;
+  min-height: fit-content;
 }
 .intro-paragraph {
   padding: 0 1.6rem;
@@ -105,7 +107,8 @@ main {
 
 .--found {
   opacity: 1;
-  background-color: yellow;
+  box-shadow: 0px 0px 20px 1px rgba(198, 132, 211, 0.6) !important;
+  /* background-color: rgb(172, 196, 190); */
 }
 
 .collectibles {
@@ -215,7 +218,7 @@ iframe {
 
 footer {
   position: fixed;
-  height: fit-content;
+  height: 3rem;
   bottom: 0;
   width: 100%;
   transform: translateX(50%);
@@ -224,4 +227,8 @@ footer {
 
 footer > * {
   width: 100%;
+  height: 3rem;
+}
+footer > button > svg {
+  height: 3rem;
 }
