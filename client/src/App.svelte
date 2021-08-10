@@ -1,5 +1,5 @@
 <script>
-  import { fade } from 'svelte/transition';
+  import { fade, slide, fly } from 'svelte/transition';
   import InfoPanel from './InfoPanel.svelte';
   import CameraButton from "./CameraButton.svelte"
   let showInfoPanel = false;
@@ -86,8 +86,10 @@
   
   const hideInfo = () => {
     showInfoPanel = false;
+    window.scrollTo(0,0)
   };
   const handleAddScene = () => {
+    window.scrollTo(0,0)
     hideInfo();
     toggleARScene();
   };
@@ -121,7 +123,7 @@
 
 <main>
   {#if showInfoPanel}
-    <div transition:fade={{ duration: 400 }}>
+    <div transition:fade={{ duration: 100 }}>
       <InfoPanel
         itemName={itemText[currentSelectedItem].name}
         itemDescription={itemText[currentSelectedItem].text}
@@ -130,20 +132,22 @@
       />
     </div>
     {:else}
-  <p class="intro-paragraph">
-    Als ich hier gelandet bin, sind mir ein paar Geschichten aus dem Rucksack
-    gefallen. Sie haben sich in verschiedenen Dimensionen versteckt.
-  </p>
-  <h2>bisher gefunden:</h2>
-  <section class="collectibles">
-    {#each itemText as items, i}
-      <button
-        on:click={testFn}
-        data-id={i + 1}
-        class={`item${i + 1} collectible ${foundItems[i] ==1 ? '--found' : '--found'}`}>{itemText[i].icon}</button
-      >
-    {/each}
-  </section>
+  <div out:slide={{ duration: 200 }} in:fly={{y:-100, duration: 300}}>
+    <p class="intro-paragraph">
+      Als ich hier gelandet bin, sind mir ein paar Geschichten aus dem Rucksack
+      gefallen. Sie haben sich in verschiedenen Dimensionen versteckt.
+    </p>
+    <h2>bisher gefunden:</h2>
+    <section class="collectibles">
+      {#each itemText as items, i}
+        <button
+          on:click={testFn}
+          data-id={i + 1}
+          class={`item${i + 1} collectible ${foundItems[i] ==1 ? '--found' : '--found'}`}>{itemText[i].icon}</button
+        >
+      {/each}
+    </section>
+  </div>
   {/if}
 </main>
 <footer>
