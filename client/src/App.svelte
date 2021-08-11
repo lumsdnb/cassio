@@ -71,16 +71,9 @@
       document.querySelector('body').appendChild(scene);
 
       // toggle camera button
-      document.getElementById('open-eye-icon').classList.remove('--hidden');
-      document.getElementById('closed-eye-icon').classList.add('--hidden');
     } else {
       // otherwise hide it
       showCameraScene = false;
-      document.querySelector('.camera-scene').remove();
-
-      // toggle camera button
-      document.getElementById('open-eye-icon').classList.add('--hidden');
-      document.getElementById('closed-eye-icon').classList.remove('--hidden');
     }
   }
   
@@ -128,7 +121,7 @@
         itemName={itemText[currentSelectedItem].name}
         itemDescription={itemText[currentSelectedItem].text}
         on:click={hideInfo}
-        src={`../assets/item${currentSelectedItem}/title-image.png`}
+        src={`./assets/item${currentSelectedItem}/title-image.png`}
       />
     </div>
     {:else}
