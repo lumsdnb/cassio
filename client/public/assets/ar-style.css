@@ -15,15 +15,16 @@ html {
 }
 
 .test-buttons {
-  z-index: 9;
-  position: relative;
-  top: 10rem;
+  z-index: 999;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
   display: flex;
   flex-direction: column;
 }
 
 .test-buttons > * {
-  padding: 1.5rem;
+  padding: 0.5rem;
 }
 body {
   margin: 0px;
