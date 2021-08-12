@@ -94,17 +94,19 @@
     >
       <a-assets>
         <a-asset-item id="tree" src="./tree.gltf"></a-asset-item>
+        <a-asset-item id="clock1" src="./clock_A.gltf"></a-asset-item>
         <a-asset-item id="houses" src="./houses.gltf"></a-asset-item>
       </a-assets>
       <!-- Defines the marker that we are going to use. Notice that we are not providing the image file, but the  -->
       <!-- "compiled" .patt file that we got from the online tool. the marker MUST BE ACCESSIBLE VIA HTTPS -->
+
       <a-marker markerhandler type="barcode" value="0" class="mark1">
-        <a-gltf-model src="#tree"></a-gltf-model>
+        <a-gltf-model src="#clock1"></a-gltf-model>
         <a-entity
           text="value: 0; color: #BBB"
-          position="5 0.2 0"
-          scale="10 10 10"
-          rotation="-90 0 0"
+          position="0 0 0"
+          scale="1 1 1"
+          rotation="0 0 0"
         ></a-entity>
       </a-marker>
       <a-marker type="barcode" value="1" class="mark2">
