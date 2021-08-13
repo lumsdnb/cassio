@@ -1,0 +1,235 @@
+@font-face {
+  font-family: eckmann;
+  src: url('./assets/Eckmann.ttf');
+}
+@font-face {
+  font-family: et;
+  src: url('./assets/et-book-roman-line-figures.ttf');
+}
+html {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  --white: rgb(243, 243, 243);
+  --brad: 0.15rem;
+}
+body {
+  margin: 0px;
+  max-width: 45rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: url('./assets/bg.png');
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'eckmann', Courier, monospace;
+  text-align: center;
+}
+
+.camera-scene {
+  position: fixed;
+  top: 0;
+}
+#camera-toggle-button {
+  position: fixed;
+  height: fit-content;
+  bottom: 0;
+  transform: translate(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#camera-toggle-button > * {
+  width: 6rem;
+  height: 6rem;
+}
+
+p {
+  font-family: 'et', 'Times New Roman', Times, serif;
+  font-size: 1.3rem;
+}
+
+h1 {
+  font-size: 2.86rem;
+  position: relative;
+  color: rgb(233, 233, 233);
+  filter: drop-shadow(3px 3px 0px black) drop-shadow(-1px -1px 0px black);
+  /* bottom: 10rem; */
+}
+
+main {
+  /* padding-top: 10rem;
+	border-radius: 50% 50% 0 0; */
+  background-color: white;
+  border-radius: var(--brad);
+  width: 90%;
+  padding-bottom: 1rem;
+  border-radius: 0 0 4rem 4rem;
+  margin-bottom: 5rem;
+}
+.intro-paragraph {
+  padding: 0 1.6rem;
+}
+
+.collectible {
+  background-color: var(--white);
+  box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+  width: 2rem;
+  height: 2rem;
+  margin: 1.5rem;
+  border-radius: 50%;
+  user-select: none;
+  font-size: 1rem;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.2;
+}
+.collectible:hover {
+  transform: scale(1.1);
+  transition: all 70ms ease-in-out;
+  box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.collectible:active {
+  transform: scale(0.9);
+}
+
+.--found {
+  opacity: 1;
+  box-shadow: 0px 0px 20px 1px rgba(198, 132, 211, 0.6) !important;
+  /* background-color: rgb(172, 196, 190); */
+}
+
+.collectibles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+#collectible-info {
+  min-width: 90vw;
+  min-height: 30vh;
+  position: absolute;
+  top: 10vh;
+  background-color: var(--white);
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 0.15rem;
+  filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.419));
+}
+
+.--hidden {
+  visibility: hidden;
+  position: absolute;
+}
+.collectible-info-image {
+  width: 15rem;
+  height: 18rem;
+}
+
+iframe {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.say-hi-button {
+  padding: 0.25em;
+  border-radius: 4px;
+  border: none;
+  background: white;
+  color: black;
+  width: 4em;
+  height: 2em;
+}
+
+.output-log {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  padding: 2rem;
+  color: white;
+  background-color: #202020;
+  user-select: none;
+  border-radius: 0.5rem;
+}
+.testbtn {
+  z-index: 55;
+  position: absolute;
+  top: 0%;
+  left: 10rem;
+}
+
+.top-overlay {
+  font-size: 3rem;
+  font-family: 'eckmann', Courier, monospace;
+  width: 100%;
+  z-index: 55;
+  position: absolute;
+  top: 0;
+  left: 0vw;
+  background: url('./gray.jpg');
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.flipped-corner {
+  transform: scaleX(-1);
+}
+
+.camera-scene {
+  position: fixed;
+  top: 0;
+}
+#camera-toggle-button {
+  height: fit-content;
+  width: 100%;
+  bottom: 0;
+  transform: translate(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+footer {
+  position: fixed;
+  height: 3rem;
+  bottom: 0;
+  width: 100%;
+  transform: translateX(50%);
+  z-index: 9;
+}
+
+footer > * {
+  width: 100%;
+  height: 3rem;
+}
+footer > button > svg {
+  height: 3rem;
+}
