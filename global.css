@@ -13,6 +13,21 @@ html {
   --white: rgb(243, 243, 243);
   --brad: 0.15rem;
 }
+<<<<<<< HEAD
+
+.test-buttons {
+  z-index: 9;
+  position: relative;
+  top: 10rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.test-buttons > * {
+  padding: 1.5rem;
+}
+=======
+>>>>>>> 38e83acf8b59c345b70014c967c7c3b3594f3223
 body {
   margin: 0px;
   max-width: 45rem;
@@ -178,20 +193,38 @@ iframe {
 }
 
 .top-overlay {
+<<<<<<< HEAD
+  font-size: 2rem;
+=======
   font-size: 3rem;
+>>>>>>> 38e83acf8b59c345b70014c967c7c3b3594f3223
   font-family: 'eckmann', Courier, monospace;
   width: 100%;
   z-index: 55;
   position: absolute;
   top: 0;
+<<<<<<< HEAD
+  height: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background: url('./gray.jpg');
+  padding: 0 1rem;
+=======
   left: 0vw;
   background: url('./gray.jpg');
   padding: 2rem 1rem;
+>>>>>>> 38e83acf8b59c345b70014c967c7c3b3594f3223
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
+<<<<<<< HEAD
+.top-overlay > img {
+  height: 3rem;
+}
+=======
+>>>>>>> 38e83acf8b59c345b70014c967c7c3b3594f3223
 
 .hidden {
   visibility: hidden;
