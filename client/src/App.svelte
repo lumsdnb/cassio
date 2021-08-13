@@ -5,8 +5,8 @@
   let showInfoPanel = false;
   let showCameraScene = false;
   let currentSelectedItem = 0;
+  // import { gameData } from './stores.js';
   
-  import { count } from './stores.js';
   
   //text of items that gets shown in the info panels
   const itemText = [
@@ -16,12 +16,17 @@
       icon: '▲'
     },
     {
+      name: 'gemeinsam',
+      text: 'manche dinge gehen besser zusammen..',
+      icon: 'G'
+    },
+    {
       name: 'Kleine Stadt',
       text: 'Die kleinste Stadt, die ich je gesehen habe, war auf Planet bla. Die Leute und ihre Häuser sind so klein, dass sie von Feinden meistens einfach übersehen werden.',
       icon: '🔍'
     },
     {
-      name: 'item333',
+      name: 'Einzeller',
       text: 'Hallo, ich bin ein großer Einzeller. Ich bin so groß wie ihr, aber ihr seid so viele..',
       icon: '🦠'
     },
@@ -36,36 +41,42 @@
       icon: '🌊'
     },
     {
-      name: '66',
+      name: 'bild am toilettelhaus',
+      text: 'kaka lol',
+      icon: '💩'
+    },
+    {
+      name: 'pflanze',
+      text: 'gustav',
+      icon: '🌱'
+    },
+    {
+      name: '3 Siebe',
+      text: 'du bist hier',
+      icon: '🔮'
+    },
+    {
+      name: 'das grosse feuer',
       text: 'Dieser baum hat gebrannt',
       icon: '🔥'
     },
     {
-      name: '77777',
-      text: 'item 7 ist hier so und macht so text',
-      icon: '❉'
-    },
-    {
-      name: 'acht',
-      text: 'Achtsam und so',
-      icon: '❽'
-    },
-    {
-      name: 'neun',
-      text: 'neun ist ne gute zahl',
-      icon: ':9'
+      name: 'chakren',
+      text: 'text zu chakren, evtl muss da ne andere datenstruktur rein',
+      icon: '🙏'
     },
   ];
-  const foundItems=[0,0,0,0,0,0,0]
+  const foundItems=[0,0,0,0,0,0,0,0,0,0,0]
+  const foundChakras=[0,0,0,0,0,0,0]
 
   function toggleARScene() {
     // adds arjs iframe to scene or removes it if button is pressed again
-    console.log('loading cam');
-    if (!document.querySelector('.camera-scene')) {
+    if (!document.getElementById('ar-frame')) {
       //if not in vr mode, start cam etc
+      console.log('loading cam');
       showCameraScene = true;
       var scene = document.createElement('iframe');
-      scene.classList.add('camera-scene');
+      scene.id = 'ar-frame';
       scene.setAttribute('src', './assets/ar.html');
       scene.setAttribute('height', '100vh');
       document.querySelector('body').appendChild(scene);
@@ -74,6 +85,7 @@
     } else {
       // otherwise hide it
       showCameraScene = false;
+      document.getElementById('ar-frame').remove()
     }
   }
   
@@ -87,19 +99,26 @@
     toggleARScene();
   };
 
-  
-
 
   // Get index of found marker sent from iFrame
   window.addEventListener('message', function(e) {
     const data = e.data;
-    foundItems[data]=1
-    currentSelectedItem=data;
-  showInfoPanel=true ; 
-    toggleARScene();
-  console.log('marker ' + data);    
-});
-
+    console.log('marker ' + data);    
+    
+    if(data.slice(0, 6)=="chakra"){
+      const chakraID = data.slice(-1) -1;
+      foundChakras[chakraID]=1
+      currentSelectedItem=10
+      showInfoPanel = true;
+      toggleARScene();
+    } else {
+      foundItems[data]=1
+      currentSelectedItem=data;
+      showInfoPanel=true ; 
+      toggleARScene();
+    }
+    });
+    
   function testFn() {
     if (this.classList.contains('--found')) {
       console.log('unlocked');
