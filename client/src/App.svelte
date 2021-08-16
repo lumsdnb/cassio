@@ -70,6 +70,13 @@
   const foundChakras=[0,0,0,0,0,0,0]
 
   function toggleARScene() {
+  let width = window.innerWidth
+              || document.documentElement.clientWidth
+              || document.body.clientWidth;
+
+  let height = window.innerHeight
+              || document.documentElement.clientHeight
+              || document.body.clientHeight;
     // adds arjs iframe to scene or removes it if button is pressed again
     if (!document.getElementById('ar-frame')) {
       //if not in vr mode, start cam etc
@@ -78,7 +85,8 @@
       var scene = document.createElement('iframe');
       scene.id = 'ar-frame';
       scene.setAttribute('src', './assets/ar.html');
-      scene.setAttribute('height', '100vh');
+      scene.setAttribute('height', `${height}px`);
+      scene.setAttribute('width', `${width}px`);
       document.querySelector('body').appendChild(scene);
 
       // toggle camera button
@@ -94,6 +102,8 @@
     window.scrollTo(0,0)
   };
   const handleAddScene = () => {
+
+
     window.scrollTo(0,0)
     hideInfo();
     toggleARScene();
@@ -103,7 +113,8 @@
   // Get index of found marker sent from iFrame
   window.addEventListener('message', function(e) {
     const data = e.data;
-    console.log('marker ' + data);    
+    console.log('marker ' + data);   
+
     
     if(data.slice(0, 6)=="chakra"){
       const chakraID = data.slice(-1) -1;

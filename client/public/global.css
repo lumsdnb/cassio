@@ -32,10 +32,10 @@ h6 {
   text-align: center;
 }
 
-.camera-scene {
+/* .camera-scene {
   position: fixed;
   top: 0;
-}
+} */
 #camera-toggle-button {
   position: fixed;
   height: fit-content;
@@ -143,8 +143,9 @@ main {
 iframe {
   position: absolute;
   top: 0;
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
+  /* transform: scale(3); */
   border: none;
 }
 
@@ -201,10 +202,6 @@ iframe {
   transform: scaleX(-1);
 }
 
-.camera-scene {
-  position: fixed;
-  top: 0;
-}
 #camera-toggle-button {
   height: fit-content;
   width: 100%;
