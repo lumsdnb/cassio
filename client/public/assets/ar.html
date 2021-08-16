@@ -7,16 +7,16 @@
     <link rel="stylesheet" type="text/css" href="./ar-style.css" />
   </head>
 
-  <script>
-    function triggerOverlay(text) {
-      const interactionMessage = document.querySelector('.interaction-message');
-      interactionMessage.textContent = text;
-      interactionMessage.parent.classList.remove('hidden');
-    }
-
+  <script defer>
     // marker detection event handlers
     AFRAME.registerComponent('markerhandler', {
       init: function () {
+        let marker = this.el;
+        marker.addEventListener('markerLost', function () {
+          var markerId = marker.id;
+          collectButton.classList.add('--hidden');
+          // TODO: Add your own code here to react to the marker being lost.
+        });
         const m0 = document.querySelector('.triangulis0');
         const m1 = document.querySelector('.triangulis1');
         const m2 = document.querySelector('.triangulis2');
@@ -41,10 +41,12 @@
 
         m0.addEventListener('markerFound', () => {
           triggerOverlay('Triangulis kennengelernt');
+          console.log('hallo i bism');
           window.parent.document
             .querySelector('.item1')
             .classList.add('--found');
         });
+
         m1.addEventListener('markerFound', () => {
           //erster marker soll zweites marker overlay triggern, also muss der code anders als be normalen markern
           triggerOverlay('hmm..');
@@ -159,10 +161,13 @@
     <button class="interaction-button" onclick="collectChakra(1)">
       collect chakra
     </button>
+    <button class="collect-button --hidden">collect me</button>
+
+    <!-- iframe get window size before loading -->
     <a-scene
       class="camera-scene"
+      arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
       embedded
-      arjs="sourceType: webcam; debugUIEnabled: true; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
     >
       <a-assets>
         <a-asset-item id="tree" src="./models/tree.gltf"></a-asset-item>
@@ -181,21 +186,32 @@
           position="0 0 0"
           scale="10 10 10"
           rotation="0 0 0"
+          animation-mixer
         ></a-entity>
         <a-box color="tomato" depth="1" height="1" width="1"></a-box>
       </a-marker>
 
       <!-- triangulis kopianer marker 1-3 -->
-      <a-marker type="barcode" value="1" class="triangulis1"> </a-marker>
+      <a-marker type="barcode" value="1" class="triangulis1">
+        <a-box color="tomato" depth="1" height="1" width="1"></a-box>
+      </a-marker>
       <!-- weitere marker werden in overlays angezeigt, damit -->
-      <a-marker type="barcode" value="2" class="triangulis2"> </a-marker>
-      <a-marker type="barcode" value="3" class="triangulis3"> </a-marker>
+      <a-marker type="barcode" value="2" class="triangulis2">
+        <a-box color="tomato" depth="1" height="1" width="1"></a-box>
+      </a-marker>
+      <a-marker type="barcode" value="3" class="triangulis3">
+        <a-box color="tomato" depth="1" height="1" width="1"></a-box>
+      </a-marker>
 
       <!-- 4 - kleine stadt (calvin) -->
-      <a-marker type="barcode" value="4" class="kleine-stadt"> </a-marker>
+      <a-marker type="barcode" value="4" class="kleine-stadt">
+        <a-box color="tomato" depth="1" height="1" width="1"></a-box>
+      </a-marker>
 
       <!-- 5 - großer einzeller -->
-      <a-marker type="barcode" value="5" class="einzeller"> </a-marker>
+      <a-marker type="barcode" value="5" class="einzeller">
+        <a-box color="tomato" depth="1" height="1" width="1"></a-box>
+      </a-marker>
 
       <!-- 6-8 - fraktale uhren (lazaro) -->
       <a-marker markerhandler type="barcode" value="6" class="uhr1">
@@ -211,6 +227,7 @@
           position="0 0 0"
           scale="10 10 10"
           rotation="0 0 0"
+          animation-mixer
         ></a-entity>
       </a-marker>
       <a-marker markerhandler type="barcode" value="7" class="uhr2">
@@ -219,6 +236,7 @@
           position="0 0 0"
           scale="1 1 1"
           rotation="90 90 0"
+          animation-mixer
         ></a-gltf-model>
 
         <a-entity
@@ -226,15 +244,17 @@
           position="0 0 0"
           scale="10 10 10"
           rotation="0 0 0"
+          animation-mixer
         ></a-entity>
       </a-marker>
       <a-marker markerhandler type="barcode" value="8" class="uhr3">
-        <a-gltf-model
-          src="#clock3"
+        <a-entity
+          gltf-model="#clock3"
           position="0 0 0"
           scale="1 1 1"
-          rotation="90 90 0"
-        ></a-gltf-model>
+          rotation="0 0 90"
+          animation-mixer
+        ></a-entity>
         <a-entity
           text="value: dritte Uhr; color: #333"
           position="0 0 0"
@@ -261,7 +281,7 @@
         ></a-entity>
       </a-marker>
       <!-- 11 - pflanze aufm boden -->
-      <a-marker markerhandler type="barcode" value="11" class="musikpflanze">
+      <a-marker markerhandler type="barcode" value="57" class="musikpflanze">
         <a-entity
           text="value: pflanze aufm boden; color: #333"
           position="0 0 0"
@@ -351,6 +371,20 @@
       <a-camera-static> </a-camera-static>
     </a-scene>
     <script>
+      const collectButton = document.querySelector('.collect-button');
+      function triggerOverlay(text) {
+        const timeout = 1000;
+        setTimeout((timeout) => {
+          collectButton.classList.remove('--hidden');
+          console.log('eyyyo');
+        }, timeout);
+
+        const interactionMessage = document.querySelector(
+          '.interaction-message'
+        );
+        interactionMessage.textContent = text;
+        interactionMessage.parent.classList.remove('hidden');
+      }
       const sceneEl = document.querySelector('.camera-scene');
       sceneEl.addEventListener('render-target-loaded', function () {
         // sceneEl.renderer is now set.
@@ -358,8 +392,3 @@
     </script>
   </body>
 </html>
-<style>
-  html {
-    /* width: 100vw; */
-  }
-</style>
