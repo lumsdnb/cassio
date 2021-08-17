@@ -7,16 +7,24 @@
     <link rel="stylesheet" type="text/css" href="./ar-style.css" />
   </head>
 
-  <script defer>
+  <script>
+    let btnTimeOut;
+    let lastFoundMarker = 0;
+    let lastFoundMarkerType = '';
     // marker detection event handlers
     AFRAME.registerComponent('markerhandler', {
       init: function () {
         let marker = this.el;
+
+        // reset stuff when marker is lost
         marker.addEventListener('markerLost', function () {
+          clearTimeout(btnTimeOut); // TODO doesnt work yet
           var markerId = marker.id;
           collectButton.classList.add('--hidden');
-          // TODO: Add your own code here to react to the marker being lost.
+          document.querySelector('.interaction-message').textContent = '';
         });
+
+        // TODO: does this need to be in aframe register function?
         const m0 = document.querySelector('.triangulis0');
         const m1 = document.querySelector('.triangulis1');
         const m2 = document.querySelector('.triangulis2');
@@ -26,119 +34,151 @@
         const m6 = document.querySelector('.uhr1');
         const m7 = document.querySelector('.uhr2');
         const m8 = document.querySelector('.uhr3');
-        const m9 = document.querySelector('wasserfall');
-        const m10 = document.querySelector('bilderrahmen');
-        const m11 = document.querySelector('musikpflanze');
-        const m12 = document.querySelector('drei-siebe');
-        const m13 = document.querySelector('brennender-baum');
-        const m14 = document.querySelector('chakra1');
-        const m15 = document.querySelector('chakra2');
-        const m16 = document.querySelector('chakra3');
-        const m17 = document.querySelector('chakra4');
-        const m18 = document.querySelector('chakra5');
-        const m19 = document.querySelector('chakra6');
-        const m20 = document.querySelector('chakra7');
+        const m9 = document.querySelector('.uhr4');
+        const m99 = document.querySelector('.wasserfall');
+        const m10 = document.querySelector('.bilderrahmen');
+        const m11 = document.querySelector('.musikpflanze');
+        const m12 = document.querySelector('.drei-siebe');
+        const m13 = document.querySelector('.brennender-baum');
+        const m14 = document.querySelector('.chakra1');
+        const m15 = document.querySelector('.chakra2');
+        const m16 = document.querySelector('.chakra3');
+        const m17 = document.querySelector('.chakra4');
+        const m18 = document.querySelector('.chakra5');
+        const m19 = document.querySelector('.chakra6');
+        const m20 = document.querySelector('.chakra7');
 
+        // ----------- event listeners for when a specific marker  is detected -----------
         m0.addEventListener('markerFound', () => {
-          triggerOverlay('Triangulis kennengelernt');
-          console.log('hallo i bism');
-          window.parent.document
-            .querySelector('.item1')
-            .classList.add('--found');
+          lastFoundMarkerType = 'normal';
+          lastFoundMarker = 0;
+          triggerOverlay('Triangulis');
         });
-
+        // triangulis interaktion entry
         m1.addEventListener('markerFound', () => {
-          //erster marker soll zweites marker overlay triggern, also muss der code anders als be normalen markern
-          triggerOverlay('hmm..');
-          //show marker in overlay
+          lastFoundMarkerType = 'i';
+          lastFoundMarker = 31;
+          triggerOverlay('..?');
         });
+        // triangulis interaktion
         m2.addEventListener('markerFound', () => {
-          triggerOverlay('marker 2 was found');
-          triggerOverlay('manche dinge gehen besser zu dritt');
+          lastFoundMarkerType = 'i';
+          lastFoundMarker = 32;
+          triggerOverlay('..!');
         });
+        // triangulis interaktion
         m3.addEventListener('markerFound', () => {
-          triggerOverlay('marker 3 was found');
-          window.parent.document
-            .querySelector('.item3')
-            .classList.add('--found');
+          lastFoundMarkerType = 'normal';
+          lastFoundMarker = 1;
+          triggerOverlay('Ihr habt es geschafft');
         });
         m4.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'normal';
+          lastFoundMarker = 4;
           triggerOverlay('cyber stadt');
-
-          window.parent.document
-            .querySelector('.item4')
-            .classList.add('--found');
         });
         m5.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'normal';
+          lastFoundMarker = 5;
           triggerOverlay('einzeller');
         });
-        // 3 muss man sammeln bevor das item gesammelt wird
+        // 4 muss man sammeln bevor das item gesammelt wird
         m6.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'u';
+          lastFoundMarker = 6;
           triggerOverlay('Uhr 1');
         });
         m7.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'u';
+          lastFoundMarker = 7;
           triggerOverlay('Uhr 2');
         });
         m8.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'u';
+          lastFoundMarker = 8;
           triggerOverlay('Uhr 3');
         });
         m9.addEventListener('markerFound', () => {
-          triggerOverlay('wasserfallllllllllllll');
+          lastFoundMarkerType = 'u';
+          lastFoundMarker = 9;
+          triggerOverlay('tick tack');
         });
+
         m10.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'normal';
+          lastFoundMarker = 10;
           triggerOverlay('bilderrahmen beim klo');
         });
+        m99.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'u';
+          lastFoundMarker = 99;
+          triggerOverlay('wasserfallllllllllllll');
+        });
         m11.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'normal';
+          lastFoundMarker = 11;
           triggerOverlay('pflanze gustav');
         });
         m12.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'sieb';
+          lastFoundMarker = 12;
           triggerOverlay('3 Siebe');
           // entweder in AR oder in overlay 3 siebe an text anlegen
         });
         m13.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'normal';
+          lastFoundMarker = 13;
           triggerOverlay('feuer');
         });
-
         // chakren kann man in beliebiger reihenfolge sammeln, das letzte zeigt dann die zusammenfassung
         m14.addEventListener('markerFound', () => {
           triggerOverlay('chakra 1');
+          lastFoundMarkerType = 'chakra';
+          lastFoundMarker = 14;
           collectChakra(1);
         });
         m15.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'chakra';
           triggerOverlay('chakra 2');
+          lastFoundMarker = 15;
           collectChakra(2);
         });
         m16.addEventListener('markerFound', () => {
           triggerOverlay('chakra 3');
+          lastFoundMarkerType = 'chakra';
+          lastFoundMarker = 16;
           collectChakra(3);
         });
         m17.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'chakra';
           triggerOverlay('chakra 4');
+          lastFoundMarker = 17;
           collectChakra(4);
         });
         m18.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'chakra';
           triggerOverlay('chakra 5');
           collectChakra(5);
         });
         m19.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'chakra';
           triggerOverlay('chakra 6');
           collectChakra(6);
         });
         m20.addEventListener('markerFound', () => {
+          lastFoundMarkerType = 'chakra';
           triggerOverlay('chakra 7');
           collectChakra(7);
         });
       },
     });
 
-    // send message to parent window
-    const handleMarkerTrigger = (e) => {
-      const overlay = document.querySelector('.top-overlay');
-      overlay.textContent = `marker ${e}`;
-      window.parent.postMessage(e, '*');
-    };
-    const collectChakra = (e) => {
-      window.parent.postMessage(`chakra ${e}`, '*');
+    //sends currently found marker from collect button
+    const collectItem = () => {
+      window.parent.postMessage(
+        lastFoundMarkerType + ' ' + lastFoundMarker,
+        '*'
+      );
     };
   </script>
 
@@ -149,21 +189,10 @@
       <img class="flipped-corner" src="./text-deco.jpg" alt="" />
     </div>
 
-    <!-- <div class="test-buttons">
-      <button onclick="handleMarkerTrigger(0)">trigger marker 0</button>
-      <button onclick="handleMarkerTrigger(1)">trigger marker 1</button>
-      <button onclick="handleMarkerTrigger(2)">trigger marker 2</button>
-      <button onclick="handleMarkerTrigger(3)">trigger marker 3</button>
-      <button onclick="handleMarkerTrigger(4)">trigger marker 4</button>
-      <button onclick="handleMarkerTrigger(5)">trigger marker 5</button>
-      <button onclick="handleMarkerTrigger(6)">trigger marker 6</button>
-    </div> -->
-    <button class="interaction-button" onclick="collectChakra(1)">
-      collect chakra
+    <button class="collect-button --hidden" onclick="collectItem()">
+      sammeln
     </button>
-    <button class="collect-button --hidden">collect me</button>
 
-    <!-- iframe get window size before loading -->
     <a-scene
       class="camera-scene"
       arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
@@ -174,10 +203,13 @@
         <a-asset-item id="clock1" src="./models/clock_A.gltf"></a-asset-item>
         <a-asset-item id="clock2" src="./models/clock_B.gltf"></a-asset-item>
         <a-asset-item id="clock3" src="./models/clock_C.gltf"></a-asset-item>
+        <!-- <a-asset-item id="clock4" src="./models/clock_D.gltf"></a-asset-item> -->
+        <a-asset-item
+          id="einzeller"
+          src="./models/einzeller.gltf"
+        ></a-asset-item>
         <a-asset-item id="houses" src="./models/houses.gltf"></a-asset-item>
       </a-assets>
-      <!-- Defines the marker that we are going to use. Notice that we are not providing the image file, but the  -->
-      <!-- "compiled" .patt file that we got from the online tool. the marker MUST BE ACCESSIBLE VIA HTTPS -->
 
       <!-- 0 - triangulis marker einfach -->
       <a-marker markerhandler type="barcode" value="0" class="triangulis0">
@@ -188,28 +220,23 @@
           rotation="0 0 0"
           animation-mixer
         ></a-entity>
-        <a-box color="tomato" depth="1" height="1" width="1"></a-box>
       </a-marker>
-
       <!-- triangulis kopianer marker 1-3 -->
-      <a-marker type="barcode" value="1" class="triangulis1">
-        <a-box color="tomato" depth="1" height="1" width="1"></a-box>
+      // TODO: Add your own code here to react to the marker being lost.
+      <a-marker markerhandler type="barcode" value="1" class="triangulis1">
       </a-marker>
-      <!-- weitere marker werden in overlays angezeigt, damit -->
-      <a-marker type="barcode" value="2" class="triangulis2">
-        <a-box color="tomato" depth="1" height="1" width="1"></a-box>
+      <!-- weitere marker werden in overlays angezeigt -->
+      <a-marker markerhandler type="barcode" value="31" class="triangulis2">
       </a-marker>
-      <a-marker type="barcode" value="3" class="triangulis3">
-        <a-box color="tomato" depth="1" height="1" width="1"></a-box>
+      <a-marker markerhandler type="barcode" value="32" class="triangulis3">
       </a-marker>
-
       <!-- 4 - kleine stadt (calvin) -->
-      <a-marker type="barcode" value="4" class="kleine-stadt">
+      <a-marker markerhandler type="barcode" value="4" class="kleine-stadt">
         <a-box color="tomato" depth="1" height="1" width="1"></a-box>
       </a-marker>
 
       <!-- 5 - großer einzeller -->
-      <a-marker type="barcode" value="5" class="einzeller">
+      <a-marker markerhandler type="barcode" value="5" class="einzeller">
         <a-box color="tomato" depth="1" height="1" width="1"></a-box>
       </a-marker>
 
@@ -262,8 +289,17 @@
           rotation="0 0 0"
         ></a-entity>
       </a-marker>
-      <!-- 9 - Wasserfall -->
-      <a-marker markerhandler type="barcode" value="9" class="wasserfall">
+      <!-- 9 - uhr 4 -->
+      <a-marker markerhandler type="barcode" value="9" class="uhr4">
+        <a-entity
+          text="value: WASSERFALLLLLLLLLLLL; color: #333"
+          position="0 0 0"
+          scale="10 10 10"
+          rotation="0 0 0"
+        ></a-entity>
+      </a-marker>
+      <!-- 99 - Wasserfall -->
+      <a-marker markerhandler type="barcode" value="99" class="wasserfall">
         <a-entity
           text="value: WASSERFALLLLLLLLLLLL; color: #333"
           position="0 0 0"
@@ -281,7 +317,7 @@
         ></a-entity>
       </a-marker>
       <!-- 11 - pflanze aufm boden -->
-      <a-marker markerhandler type="barcode" value="57" class="musikpflanze">
+      <a-marker markerhandler type="barcode" value="11" class="musikpflanze">
         <a-entity
           text="value: pflanze aufm boden; color: #333"
           position="0 0 0"
@@ -370,20 +406,20 @@
       <!-- Define the camera of the scene -->
       <a-camera-static> </a-camera-static>
     </a-scene>
+
     <script>
       const collectButton = document.querySelector('.collect-button');
+
       function triggerOverlay(text) {
-        const timeout = 1000;
-        setTimeout((timeout) => {
+        const timeout = 2000;
+        btnTimeOut = setTimeout((timeout) => {
           collectButton.classList.remove('--hidden');
-          console.log('eyyyo');
         }, timeout);
 
         const interactionMessage = document.querySelector(
           '.interaction-message'
         );
         interactionMessage.textContent = text;
-        interactionMessage.parent.classList.remove('hidden');
       }
       const sceneEl = document.querySelector('.camera-scene');
       sceneEl.addEventListener('render-target-loaded', function () {
