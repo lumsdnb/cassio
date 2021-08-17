@@ -67,7 +67,8 @@ h6 {
 .interaction-button {
   z-index: 555;
 }
-#collect-button {
+.collect-button {
+  padding: 2rem;
   z-index: 555;
 }
 
