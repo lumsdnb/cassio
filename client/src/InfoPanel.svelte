@@ -18,6 +18,12 @@
 </section>
 
 <style>
+  article>img{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   .collectible-info{
     background-color: var(--white);
     margin: 0;
