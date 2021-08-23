@@ -1,7 +1,7 @@
 <script>
     export let itemName
     export let itemDescription
-    export let src
+    export let currentSelectedItem
 </script>
 <section class="collectible-info" >
   <button on:click>X</button>
@@ -10,10 +10,10 @@
     <article>
       <img
         class="collectible-info-image"
-        {src}
+        src={`./assets/item${currentSelectedItem}/title-image.gif`}
         alt={`${itemName} image`}
       />
-      <p id="collectible-info-text">{itemDescription}</p>
+      <p id="collectible-info-text">{@html itemDescription}</p>
     </article>
 </section>
 

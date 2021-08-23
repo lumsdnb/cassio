@@ -6,28 +6,24 @@
   let showCameraScene = false;
   let currentSelectedItem = 0;
   let currentItem;
+  let youWon=false
 
   //text of items that gets shown in the info panels
   const itemText = [
     {
       name: 'Triangulis',
-      text: 'Triangulis  nennt sich die Welt der Dreieckspersonen. In dieser Welt wird nichts zu zweit getan, sondern alles zu dritt erledigt, so gibt es auch das ja, das nein und das, wer weiß?. Ja, selbst beim Fußball spielen drei Teams gegeneinander. Der tag hat drei Phasen, den Aufgang der ersten sonne, die Phase in der beide Sonnen zu sehen sind und die letzte Phase in der nur eine der beiden sonnen zu sehen ist. <p> Welt 1 besser bekannt als Trianga (oder Azurien) leben sehr besondere Lebewesen. Sie sind Dreiecke. Da der Planet seine Stern sehr eng umkreist, haben sich auf dieser sumpfigen Wasserwelt Lebewesen in dreieckiger Form gebildet. Sie währen nie auf den Gedanken gekommen, eine Frage nach einem Ja oder einem Nein zu stellen, viel mehr würden sie dich aus 3 verschiedenen Kontexten heraus nach der cleversten Lösung nach einem Problem fragen. </p> Die Trainguilaner betreiben uns fremden Koitus. Sie ... tedraeder etc. Schenekel in der länge verändern ... Extrem krasse lebewesen aus formen die man aus drei-ecken bilden kann. Sie Leben alle in frieden und es gibt ein gleich Gewicht zwischen den verschiedenen Lebensformen: 3 Ecke sind für die Fortpflanzung zu ständig. Die 4 Ecke, sind die Gebäudebauer und Architekten 5 ecke sind richtige Profis in der Küche und in vielen handwerklichen dingen 6 ecke sind optimal zu verteidigungszwecken gegen Asteroiden - sie können nämlich fliegen da sie sechs Flügel habenJedes Lebewesen, egal in welcher form es geboren wird, kann zurück in das Dreiecksstadium fallen, wenn es sich fortpflanzen mag.',
+      text: 'Triangulis ist die Welt der Dreiecke. In dieser Welt wird nichts zu zweit getan, sondern alles mindestens zu dritt erledigt. Ja selbst beim Fußball spielen drei Teams gegeneinander. Auf den Spielplätzen wird zu dritt gewippt und zu fünft geschaukelt. So gibt es auch das ja, das nein und das <i> wer weiß?</i>. <br>Zudem hat der Tag drei Phasen, den Aufgang der ersten Sonne, die Phase in der beide Sonnen am Himmel stehen und den Untergang der zweiten Sonne, bei der folglich nur ein Stern am Himmel glüht. <br> Bei der ganzen Romantik muss ich natürlich auch die Romantik erwähnen, die bei den Triangulianern nur zu dritt auf fruchtbaren Boden fallen kann.',
       icon: '▲'
     },
     {
-      name: '',
-      text: 'manche dinge gehen besser gemeinsam..',
-      icon: 'G'
+      name: 'Die Kopianer',
+      text: 'Herzlichen Glückwunsch. Ihr habt soeben an einem Ritual der Kopianer teilgenommen. <br><br> Aber was sind Kopianer? <br><br> Die Kopianer entstanden aus den Trümmern einer zerstörten Welt. Bis zur letzten Generation vor ihrer Zeit kümmerten die Bewohner sich stets darum, jeden einzelnen, eigenen Gedanken voreinander zu verstecken und zu verheimlichen. Nichts wurde geteilt, keine Geschenke wurden gemacht, selbst die täglichen Nachrichten berichteten immer nur das Gleiche. <br> Um einen fremden Gedanken zu fassen, musste man ihn entweder selber denken, oder käuflich erwerben. <br><br> Das ganze spitzte sich immer weiter zu, bis der Druck alles zu Verheimlichen auf jeden Einzelnen so hoch wurde, dass das große Schweigen begann. Diese beißende Stille hielt keine fünf Wochen und es eskalierte.<br><br> Alle vereinsamten dadurch, im Straßenverkehr blinkte keiner mehr, bis schließlich die Kraftwerkarbeiter mit dem Bus nicht mehr zur Arbeit kamen. So manövrierte sich ihre Gesellschaft in einen Apfel-Strudel des Chaos. Zuckersüß, weil jeder alleine war, zugleich furchtbar, weil jeder alleine war.<br><br> In aller Dunkelheit und Ruhe entwickelte sich nie dagewesene Musik. Diese fiel ein wie ein Virus. <br><br> In weniger als 24h verbreitete sich die simpelste und langsamste aller Schwingungen. Das Besondere an dieser Musik war, dass sie frei von allen Regeln, kostenlos und beliebig oft vervielfältigbar verschenkt wurde. Die Zeit des Teilens war geboren. Als Grundprinzip des neuen Miteinanders galt nun die Regel, jedes Wissen darf und kann von jedem kostenfrei kopiert werden.',
+      icon: '🖧'
     },
     {
-      name: 'Kleine Stadt',
-      text: 'Die kleinste Stadt, die ich je gesehen habe, war auf Planet bla. Die Leute und ihre Häuser sind so klein, dass sie von Feinden meistens einfach übersehen werden.',
-      icon: '🔍'
-    },
-    {
-      name: 'uhren',
-      text: 'es scheint, als sei die Zeit stehen geblieben',
-      icon: '🕐'
+      name: 'Masken',
+      text: '',
+      icon: '🎭'
     },
     {
       name: 'Einzeller',
@@ -35,39 +31,101 @@
       icon: '🦠'
     },
     {
-      name: 'Wasserplanet',
-      text: 'Als ich auf einer meiner Wurmlochreisen mit einem Wal zusammengestossen bin, hat es mich richtig aus den Socken gehauen',
-      icon: '🌊'
+      name: 'Das Wurmloch',
+      text: '',
+      icon: '🌌'
     },
     {
       name: 'bild am toilettelhaus',
-      text: 'kaka lol',
+      text: '',
       icon: '💩'
     },
     {
-      name: 'pflanze',
-      text: 'gustav',
+      name: 'Die Stimme der Pflanzen',
+      text: 'Auf einer ihrer Reisen durch ferne Galaxien machte Cassiopeia auf dem Waldplaneten Aryoban halt. Das dort ansässige Volk der Snuwmis, lebte seit vielen Jahrtausenden friedlich im Einklang mit der Natur. Sie hatten über die Zeit eine tiefe Verbindung zu den Tieren und Pflanzen des Planeten aufgebaut und gelernt diese zu verstehen. Noch während Cassiopeia auf dem Planeten verteilte wurde diese Harmonie, vom Einfall  bösartigen Schurkulus Käfer tief erschüttert. Die Snuwmis wussten keine geeignete Antwort auf die Plage. Deshalb half Cassiopeia ihnen dabei Geräte zu bauen, mit denen sie den Pflanzen Stimmen geben konnten. Da sie die Pflanzen jetzt verstehen konnten, viel es den Snuwmis leicht herauszufinden was ihnen für die Bekämpfung der Schurkulus Käfer fehlte. Und so konnte dank Cassiopeias Hilfe die Käfer erfolgreich und die Flucht geschlagen werden. Eines dieser mysteriösen Geräte nahm Cassiopeia mit um euch, die ihr sie an dem ihr liebsten Ort besucht, die Stimmen der Pflanzen zu zeigen.',
       icon: '🌱'
     },
     {
-      name: '3 Siebe',
-      text: 'du bist hier',
-      icon: '🔮'
+      name: 'Vernetzte Stadt',
+      text: '',
+      icon: '🏙️'
     },
     {
-      name: 'das grosse feuer',
-      text: 'Dieser baum hat gebrannt',
-      icon: '🔥'
-    },
-    {
-      name: 'chakren',
-      text: 'text zu chakren, evtl muss da ne andere datenstruktur rein',
-      icon: '🙏'
+      name: 'das ende vom anfang',
+      text: 'Es schien, als sei die Zeit stehen geblieben...',
+      icon: '🕐'
     },
   ];
-  let foundItems=[0,0,0,0,0,0,0,0,0,0,0]
-  let foundChakras=[0,0,0,0,0,0,0]
+
+  const clockText=[
+    {
+      name: 'Uhr 1/4',
+      text: '',
+      icon: '🕐'
+    },
+    {
+      name: 'Uhr 2/4',
+      text: '',
+      icon: '🕐'
+    },
+    {
+      name: 'Uhr 3/4',
+      text: '',
+      icon: '🕐'
+    },
+    {
+      name: 'Uhr 4/4',
+      text: '',
+      icon: '🕐'
+    },
+  ]
+  const maskText=[
+    {
+      name: 'Maske 1/2',
+      text: '',
+      icon: ''
+    },
+    {
+      name: 'Maske 2/2',
+      text: '',
+      icon: ''
+    },
+  ]
+
+  let foundItems=[0,0,0,0,0,0,0,0,0]
+  // let foundChakras=[0,0,0,0,0,0,0]
+  let foundClocks=[0,0,0,0]
+  let foundMasks=[0,0]
   let currentIsInteractable=false
+
+  
+
+  let showPartialInfo=false
+
+  // TODO: impl local storage fully
+  const storeLocalData=()=> {
+  localStorage.setItem(`foundItems`, JSON.stringify(foundItems));
+  localStorage.setItem(`foundMasks`, JSON.stringify(foundMasks));
+  localStorage.setItem(`foundClocks`, JSON.stringify(foundClocks));
+  // localStorage.setItem(`foundChakras`, JSON.stringify(foundChakras));
+}
+
+// if (localStorage.foundItems) {
+//   let objList = localStorage.getItem('myLibrary');
+//   objList = JSON.parse(objList);
+//   objList.forEach((book) => {
+//     let b = Object.create(book);
+//     book.isPrototypeOf(b);
+//     myLibrary.push(b);
+//   });
+//   renderBooks();
+//   console.log('loaded');
+// }
+
+
+function hideARScene(){
+  document.getElementById('ar-frame').remove()
+}
 
   function toggleARScene() {
     //get screen size for iframe
@@ -108,56 +166,77 @@
 
   // --------------- Get index of found marker sent from iFrame ---------------
   window.addEventListener('message', (e)=> {
+
+    hideARScene();
     let data = e.data;
     console.log('marker ' + data);
-    
     //regular marker check   
     if (data.slice(0, 6)=="normal") {
-     data = data.slice(7) // TODO: muss fuer 2stellige zahlen anders
+     data = data.slice(7)
      // check off item in dom
-     document
-      .querySelector(`.item${data}`)
-      .classList.add('--found'); 
+    //  document
+    //   .querySelector(`.item${data}`)
+    //   .classList.add('--found'); 
      foundItems[data]=1
      currentIsInteractable=false
      currentSelectedItem=data;
      currentItem=itemText[data]
      showInfoPanel=true ; 
-     toggleARScene();
    }
    //interactable
    if (data.slice(0,1)=="i") {
-      currentSelectedItem = data.slice(2);
+    currentSelectedItem = data.slice(2);
       currentIsInteractable=true
       currentItem={
       name: '..?',
       text: ''
     },
       showInfoPanel = true;
-      toggleARScene();
+      
     }
    // clocks
    if (data.slice(0,1)=="u") {
-      currentSelectedItem = data.slice(-1) -1;
+      const index = data.slice(2)
+      currentSelectedItem = index+10;
+      foundClocks[index]=1
+      console.log(foundClocks);
+      currentItem=clockText[index],
       currentIsInteractable=false
       showInfoPanel = true;
-      toggleARScene();
+    }
+    // masks
+   if (data.slice(0,1)=="m") {
+     const index = data.slice(2)
+      currentSelectedItem = index+10;
+      foundMasks[index]=1
+      console.log(foundMasks);
+      currentItem=maskText[index],
+      currentIsInteractable=false
+      showInfoPanel = true;
     }
     //chakra marker detection
     if(data.slice(0, 6)=="chakra"){
-      const chakraID = data.slice(-1) -1;
+      const chakraID = data.slice(-1)
       currentIsInteractable=false
       currentSelectedItem=10
       foundChakras[chakraID]=1
       showInfoPanel = true;
-      toggleARScene();
     }
-    });
+
+    // awful code here
+    if (foundClocks[0]==1&& foundClocks[1]==1 && foundClocks[2]==1&&foundClocks[3]==1){
+      foundItems[8]=1
+    }
+    if (foundMasks[0]==1 && foundMasks[1]==1) {
+      foundItems[2]=1
+    }
+    if(foundItems.every( i => i === 1 )){
+      youWon=true
+    }
+  });
     
   function loadItemFromButton() {
     if (this.classList.contains('--found')) {
-      console.log('unlocked');
-
       currentItem=itemText[this.dataset.id -1]
       currentSelectedItem = this.dataset.id - 1;
       showInfoPanel = true;
@@ -167,7 +246,7 @@
 </script>
 
 <header class="banner-img">
-  <h1>Cassiopeias Saga</h1>
+  <h1>Cassiopeias Schatzsuche</h1>
 </header>
 
 <main>
@@ -178,15 +257,15 @@
       itemName={currentItem.name}
       itemDescription={currentItem.text}
       on:click={hideInfo}
-      src={`./assets/item${currentSelectedItem}/title-image.png`}
+      {currentSelectedItem}
       />
     </div>
 
     {:else}
+    
   <div out:slide={{ duration: 200 }} in:fly={{y:-100, duration: 300}}>
     <p class="intro-paragraph">
-      Als ich hier gelandet bin, sind mir ein paar Geschichten aus dem Rucksack
-      gefallen. Sie haben sich in verschiedenen Dimensionen versteckt.
+      Auf dem Gelände haben sich ein paar meiner Geschichten versteckt.
     </p>
     <h2>bisher gefunden:</h2>
     <section class="collectibles">
@@ -194,7 +273,7 @@
         <button
           on:click={loadItemFromButton}
           data-id={i + 1}
-          class={`item${i + 1} collectible ${foundItems[i] ==1 ? '--found' : '--found'}`}>{itemText[i].icon}</button
+          class={`item${i + 1} collectible ${foundItems[i] ==1 ? '--found' : '--hidden'}`}>{itemText[i].icon}</button
         >
       {/each}
     </section>

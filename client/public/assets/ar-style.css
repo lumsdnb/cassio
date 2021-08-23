@@ -162,6 +162,7 @@ main {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  opacity: 1;
 }
 .top-overlay > img {
   height: 3rem;
@@ -171,6 +172,10 @@ main {
   visibility: hidden;
 }
 
+.no-opacity {
+  transition: opacity 100ms ease-in-out;
+  opacity: 0;
+}
 .flipped-corner {
   transform: scaleX(-1);
 }

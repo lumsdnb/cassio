@@ -1,12 +1,13 @@
 const express = require('express');
-// const fs = require('fs');
+const fs = require('fs');
 const app = express();
-const http = require('http');
-// const options = {
-//   key: fs.readFileSync('key.pem'),
-//   cert: fs.readFileSync('cert.pem'),
-// };
-const server = http.createServer(app);
+const https = require('https');
+
+const options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem'),
+};
+const server = https.createServer(options, app);
 const { Server } = require('socket.io');
 const io = new Server(server);
 var path = require('path');
@@ -23,6 +24,7 @@ io.on('connection', (socket) => {
   console.log(socket.id);
 });
 
+// optional second argument specifies hostname
 server.listen(3000, () => {
-  console.log('listening on *:3000');
+  console.log('listening on cassiopeia:3000');
 });

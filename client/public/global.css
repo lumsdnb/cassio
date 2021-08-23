@@ -10,7 +10,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  --white: rgb(243, 243, 243);
+  --white: #fff;
   --brad: 0.15rem;
 }
 body {
@@ -132,8 +132,10 @@ main {
 }
 
 .--hidden {
-  visibility: hidden;
-  position: absolute;
+  opacity: 0.2;
+}
+.--hidden button:hover {
+  transform: scale(1) !important;
 }
 .collectible-info-image {
   width: 15rem;
